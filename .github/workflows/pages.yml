@@ -1,0 +1,55 @@
+name: Deploy website to GitHub Pages
+run-name: Website ${{ github.sha }}
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      NEXT_PUBLIC_BASE_PATH: /statoz-next-website
+      NEXT_PUBLIC_SITE_URL: https://pai45.github.io/statoz-next-website
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build:pages
+      - run: npm run check
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:pages
+        env:
+          EXPECTED_COMMIT: ${{ github.sha }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy verified website
+        id: deployment
+        uses: actions/deploy-pages@v4

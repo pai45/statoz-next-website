@@ -1,0 +1,76 @@
+/* ============================================================
+   StatOz -Predict · Picks · Leaderboard
+   Bespoke FIFA-card + cyberpunk HUD design system
+   ============================================================ */
+
+/* ---------- tokens ---------- */
+:root {
+  --ink: #06080f;
+  --ink2: #090d16;
+  --panel: #0b101b;
+  --panel2: #0e1626;
+  --line: rgba(122, 162, 212, 0.12);
+  --line2: rgba(122, 162, 212, 0.24);
+
+  --cy: #5cdfff;
+  --cy-bri: #9bf1ff;
+  --cy-deep: #1f8fb8;
+  --mag: #ff2e7e;
+  --gold: #ffc24b;
+  --gold-deep: #b97d11;
+
+  --txt: #e9f1fc;
+  --mut: #94a6c1;
+  --faint: #5e6f8b;
+
+  --disp: var(--font-disp), "Orbitron", -apple-system, sans-serif;
+  --ui: var(--font-ui), "Space Grotesk", -apple-system, sans-serif;
+  --mono: var(--font-mono), "Space Mono", ui-monospace, monospace;
+  --ds-font-display: var(--disp);
+  --ds-font-body: var(--ui);
+
+  --cut: 14px; /* angular corner size */
+  --maxw: 1240px;
+  --gut: clamp(16px, 4vw, 44px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--ui);
+  background: var(--ink);
+  color: var(--txt);
+  line-height: 1.55;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  cursor: auto;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--disp);
+}
+button, input, select, textarea {
+  font-family: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+svg {
+  fill: currentColor;
+}
+::selection {
+  background: var(--cy);
+  color: #03131a;
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

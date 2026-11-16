@@ -1,0 +1,72 @@
+{
+  "frames": [
+    {
+      "viewport": 1440,
+      "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti Laptop GPU (0x000024A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "visibility": "visible",
+      "cityScene": "true",
+      "mode": "tour",
+      "arrival": "settled",
+      "cameraMode": "hero",
+      "carPosition": "-18.50,0.00,116.00",
+      "driveDistance": "0.000",
+      "speed": "0.00",
+      "cameraChapter": "welcome",
+      "cameraPosition": "-17.00,5.91,201.44",
+      "quality": "desktop",
+      "people": "304",
+      "athletes": "24",
+      "stands": "12",
+      "activityPaused": "false",
+      "roamActive": "false",
+      "roamSolids": "1437",
+      "shaderPrograms": "69",
+      "activityTime": "10.037",
+      "trafficGap": "none",
+      "logoLanded": "true",
+      "fps": "73.9",
+      "drawCalls": "1220",
+      "triangles": "1029637"
+    },
+    {
+      "viewport": 390,
+      "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti Laptop GPU (0x000024A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "visibility": "visible",
+      "cityScene": "true",
+      "mode": "tour",
+      "arrival": "settled",
+      "cameraMode": "hero",
+      "carPosition": "-18.50,0.00,116.00",
+      "driveDistance": "0.000",
+      "speed": "0.00",
+      "cameraChapter": "welcome",
+      "cameraPosition": "-17.00,7.03,205.31",
+      "quality": "mobile",
+      "people": "321",
+      "athletes": "24",
+      "stands": "12",
+      "activityPaused": "false",
+      "roamActive": "false",
+      "roamSolids": "1308",
+      "shaderPrograms": "58",
+      "activityTime": "10.029",
+      "trafficGap": "none",
+      "logoLanded": "true",
+      "fps": "75.0",
+      "drawCalls": "405",
+      "triangles": "457058"
+    }
+  ],
+  "note": "Local desktop browser lab measurements. Mobile widths are emulation, not physical-phone benchmarks.",
+  "lighthouse": {
+    "scores": {
+      "performance": 0.69,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "LCP": 3315.7463000000002,
+    "CLS": 0,
+    "TBT": 967.9999999999991
+  }
+}

@@ -1,0 +1,1052 @@
+[
+  {
+    "width": 1440,
+    "height": 950,
+    "id": "welcome",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 562.125,
+    "top": 227.859375,
+    "navTop": 880,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Welcome Home,",
+        "x": 145,
+        "right": 1295,
+        "height": 118.9375
+      },
+      {
+        "text": "Sports Wizard.",
+        "x": 145,
+        "right": 1295,
+        "height": 118.9375
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 1440,
+    "height": 950,
+    "id": "entry",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 800,
+    "top": 686.578125,
+    "navTop": 868,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Enter",
+        "x": 541.125,
+        "right": 652.015625,
+        "height": 43.421875
+      },
+      {
+        "text": "StatOz City.",
+        "x": 662.484375,
+        "right": 898.859375,
+        "height": 43.421875
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 1440,
+    "height": 950,
+    "id": "follow",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 736.828125,
+    "top": 168.171875,
+    "navTop": 868,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Your teams.",
+        "x": 130,
+        "right": 626,
+        "height": 61.796875
+      },
+      {
+        "text": "Every moment.",
+        "x": 130,
+        "right": 626,
+        "height": 61.796875
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 1440,
+    "height": 950,
+    "id": "predict",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 751.03125,
+    "top": 153.953125,
+    "navTop": 868,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Feel the game.",
+        "x": 130,
+        "right": 626,
+        "height": 61.796875
+      },
+      {
+        "text": "Make your call.",
+        "x": 130,
+        "right": 626,
+        "height": 61.796875
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 1440,
+    "height": 950,
+    "id": "knowledge",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 819.9375,
+    "top": 85.0625,
+    "navTop": 868,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Know your sport?",
+        "x": 130,
+        "right": 626,
+        "height": 123.59375
+      },
+      {
+        "text": "Prove it.",
+        "x": 130,
+        "right": 626,
+        "height": 61.796875
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 1440,
+    "height": 950,
+    "id": "games",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 747.890625,
+    "top": 157.109375,
+    "navTop": 868,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "One more game.",
+        "x": 130,
+        "right": 626,
+        "height": 61.796875
+      },
+      {
+        "text": "Always.",
+        "x": 130,
+        "right": 626,
+        "height": 61.796875
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 375,
+    "height": 812,
+    "id": "welcome",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 390.890625,
+    "top": 210,
+    "navTop": 756,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Welcome Home,",
+        "x": 24,
+        "right": 351,
+        "height": 37.15625
+      },
+      {
+        "text": "Sports Wizard.",
+        "x": 24,
+        "right": 351,
+        "height": 37.15625
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 375,
+    "height": 812,
+    "id": "entry",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 642,
+    "top": 552.53125,
+    "navTop": 744,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Enter",
+        "x": 63.265625,
+        "right": 140.296875,
+        "height": 30.671875
+      },
+      {
+        "text": "StatOz City.",
+        "x": 147.546875,
+        "right": 311.734375,
+        "height": 30.671875
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 375,
+    "height": 812,
+    "id": "follow",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 592.390625,
+    "top": 104,
+    "navTop": 744,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Your teams.",
+        "x": 38,
+        "right": 337,
+        "height": 37.609375
+      },
+      {
+        "text": "Every moment.",
+        "x": 38,
+        "right": 337,
+        "height": 37.609375
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 375,
+    "height": 812,
+    "id": "predict",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 616.203125,
+    "top": 104,
+    "navTop": 744,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Feel the game.",
+        "x": 38,
+        "right": 337,
+        "height": 37.609375
+      },
+      {
+        "text": "Make your call.",
+        "x": 38,
+        "right": 337,
+        "height": 37.609375
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 375,
+    "height": 812,
+    "id": "knowledge",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 719.8125,
+    "top": 104,
+    "navTop": 744,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Know your sport?",
+        "x": 38,
+        "right": 337,
+        "height": 75.21875
+      },
+      {
+        "text": "Prove it.",
+        "x": 38,
+        "right": 337,
+        "height": 37.609375
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 375,
+    "height": 812,
+    "id": "games",
+    "simple": false,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 583.609375,
+    "top": 104,
+    "navTop": 744,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "One more game.",
+        "x": 38,
+        "right": 337,
+        "height": 37.609375
+      },
+      {
+        "text": "Always.",
+        "x": 38,
+        "right": 337,
+        "height": 37.609375
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 768,
+    "height": 950,
+    "id": "welcome",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 506.625,
+    "top": 283.359375,
+    "navTop": 880,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Welcome Home,",
+        "x": 24,
+        "right": 744,
+        "height": 63.4375
+      },
+      {
+        "text": "Sports Wizard.",
+        "x": 24,
+        "right": 744,
+        "height": 63.4375
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 768,
+    "height": 950,
+    "id": "entry",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 800,
+    "top": 699.84375,
+    "navTop": 868,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Enter",
+        "x": 259.765625,
+        "right": 336.796875,
+        "height": 30.15625
+      },
+      {
+        "text": "StatOz City.",
+        "x": 344.046875,
+        "right": 508.234375,
+        "height": 30.15625
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 768,
+    "height": 950,
+    "id": "follow",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 716.953125,
+    "top": 188.046875,
+    "navTop": 868,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Your teams.",
+        "x": 79.59375,
+        "right": 348.9375,
+        "height": 35.625
+      },
+      {
+        "text": "Every moment.",
+        "x": 79.59375,
+        "right": 348.9375,
+        "height": 35.625
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 768,
+    "height": 950,
+    "id": "predict",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 752.171875,
+    "top": 152.8125,
+    "navTop": 868,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Feel the game.",
+        "x": 79.59375,
+        "right": 348.9375,
+        "height": 35.625
+      },
+      {
+        "text": "Make your call.",
+        "x": 79.59375,
+        "right": 348.9375,
+        "height": 35.625
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 768,
+    "height": 950,
+    "id": "knowledge",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 753.125,
+    "top": 151.875,
+    "navTop": 868,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Know your sport?",
+        "x": 79.59375,
+        "right": 348.9375,
+        "height": 71.25
+      },
+      {
+        "text": "Prove it.",
+        "x": 79.59375,
+        "right": 348.9375,
+        "height": 35.625
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 768,
+    "height": 950,
+    "id": "games",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 737.015625,
+    "top": 167.984375,
+    "navTop": 868,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "One more game.",
+        "x": 79.59375,
+        "right": 348.9375,
+        "height": 35.625
+      },
+      {
+        "text": "Always.",
+        "x": 79.59375,
+        "right": 348.9375,
+        "height": 35.625
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 812,
+    "height": 375,
+    "id": "welcome",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 317.34375,
+    "top": 110,
+    "navTop": 319,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Welcome Home,",
+        "x": 24,
+        "right": 788,
+        "height": 66.078125
+      },
+      {
+        "text": "Sports Wizard.",
+        "x": 24,
+        "right": 788,
+        "height": 66.078125
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 812,
+    "height": 375,
+    "id": "entry",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 225,
+    "top": 128.046875,
+    "navTop": 307,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Enter",
+        "x": 281.765625,
+        "right": 358.796875,
+        "height": 30.15625
+      },
+      {
+        "text": "StatOz City.",
+        "x": 366.046875,
+        "right": 530.234375,
+        "height": 30.15625
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 812,
+    "height": 375,
+    "id": "follow",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 270.875,
+    "top": 82,
+    "navTop": 307,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Your teams.",
+        "x": 44,
+        "right": 374.5,
+        "height": 37.109375
+      },
+      {
+        "text": "Every moment.",
+        "x": 44,
+        "right": 374.5,
+        "height": 37.109375
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 812,
+    "height": 375,
+    "id": "predict",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 266.25,
+    "top": 82,
+    "navTop": 307,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Feel the game.",
+        "x": 44,
+        "right": 374.5,
+        "height": 37.109375
+      },
+      {
+        "text": "Make your call.",
+        "x": 44,
+        "right": 374.5,
+        "height": 37.109375
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 812,
+    "height": 375,
+    "id": "knowledge",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 271.25,
+    "top": 82,
+    "navTop": 307,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Know your sport?",
+        "x": 44,
+        "right": 374.5,
+        "height": 37.109375
+      },
+      {
+        "text": "Prove it.",
+        "x": 44,
+        "right": 374.5,
+        "height": 37.109375
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 812,
+    "height": 375,
+    "id": "games",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 280,
+    "top": 82,
+    "navTop": 307,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "One more game.",
+        "x": 44,
+        "right": 180.34375,
+        "height": 111.328125
+      },
+      {
+        "text": "Always.",
+        "x": 44,
+        "right": 180.34375,
+        "height": 37.109375
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 320,
+    "height": 667,
+    "id": "welcome",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 332.640625,
+    "top": 160,
+    "navTop": 611,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Welcome Home,",
+        "x": 24,
+        "right": 296,
+        "height": 33.03125
+      },
+      {
+        "text": "Sports Wizard.",
+        "x": 24,
+        "right": 296,
+        "height": 33.03125
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 320,
+    "height": 667,
+    "id": "entry",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 497,
+    "top": 376.859375,
+    "navTop": 599,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Enter",
+        "x": 121.484375,
+        "right": 198.515625,
+        "height": 30.671875
+      },
+      {
+        "text": "StatOz City.",
+        "x": 77.90625,
+        "right": 242.09375,
+        "height": 30.671875
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 320,
+    "height": 667,
+    "id": "follow",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 523.421875,
+    "top": 92,
+    "navTop": 599,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Your teams.",
+        "x": 36,
+        "right": 284,
+        "height": 37.75
+      },
+      {
+        "text": "Every moment.",
+        "x": 36,
+        "right": 284,
+        "height": 75.5
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 320,
+    "height": 667,
+    "id": "predict",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 564.015625,
+    "top": 92,
+    "navTop": 599,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Feel the game.",
+        "x": 36,
+        "right": 284,
+        "height": 37.75
+      },
+      {
+        "text": "Make your call.",
+        "x": 36,
+        "right": 284,
+        "height": 75.5
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 320,
+    "height": 667,
+    "id": "knowledge",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 561.828125,
+    "top": 92,
+    "navTop": 599,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "Know your sport?",
+        "x": 36,
+        "right": 284,
+        "height": 75.5
+      },
+      {
+        "text": "Prove it.",
+        "x": 36,
+        "right": 284,
+        "height": 37.75
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  },
+  {
+    "width": 320,
+    "height": 667,
+    "id": "games",
+    "simple": true,
+    "headingStyle": "normal",
+    "primary": "displayFont, \"displayFont Fallback\", sans-serif",
+    "secondary": "bodyFont, \"bodyFont Fallback\", sans-serif",
+    "primaryToken": "\"displayFont\", \"displayFont Fallback\"",
+    "secondaryToken": "\"bodyFont\", \"bodyFont Fallback\"",
+    "bottom": 523.640625,
+    "top": 92,
+    "navTop": 599,
+    "horizontalOverflow": false,
+    "textRects": [
+      {
+        "text": "One more game.",
+        "x": 36,
+        "right": 284,
+        "height": 75.5
+      },
+      {
+        "text": "Always.",
+        "x": 36,
+        "right": 284,
+        "height": 37.75
+      }
+    ],
+    "shade": "rgba(0, 0, 0, 0)",
+    "fonts": [
+      "displayFont",
+      "bodyFont",
+      "bodyFont Fallback"
+    ]
+  }
+]

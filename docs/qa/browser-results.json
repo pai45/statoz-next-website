@@ -1,0 +1,1831 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\playwright.config.ts",
+    "rootDir": "c:/Users/priya/Dev/StatOz/statoz-website/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "c:/Users/priya/Dev/StatOz/statoz-website/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "c:/Users/priya/Dev/StatOz/statoz-website/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests",
+        "snapshotDir": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 120000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4410",
+          "browserName": "chromium",
+          "headless": true,
+          "launchOptions": {
+            "channel": "chromium"
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "docs/qa/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run start -- --port 4410",
+      "url": "http://127.0.0.1:4410",
+      "reuseExistingServer": true,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "city-refinement.spec.ts",
+      "file": "city-refinement.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "all refinement assets are local, intact and have source provenance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 248,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:19:43.385Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2e864937ee4050929314-000d0cdc917664846c51",
+          "file": "city-refinement.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "city dynamics and game characters pause together at 1440",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14569,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:19:43.709Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2e864937ee4050929314-58f312a3fa36a65610c6",
+          "file": "city-refinement.spec.ts",
+          "line": 30,
+          "column": 38
+        },
+        {
+          "title": "city dynamics and game characters pause together at 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12166,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:19:58.885Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2e864937ee4050929314-7edea9ccce53106e68eb",
+          "file": "city-refinement.spec.ts",
+          "line": 30,
+          "column": 38
+        }
+      ]
+    },
+    {
+      "title": "city-roam.spec.ts",
+      "file": "city-roam.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "movement sweeps into walls, slides on foot and respects district limits",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:20:11.261Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "674f8b84c661df5d9f39-33bfd296876102c4cc64",
+          "file": "city-roam.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "journey hands over the car; avatar can leave, walk and re-enter it",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 21400,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:20:11.296Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "674f8b84c661df5d9f39-089bbd4b1a669d971867",
+          "file": "city-roam.spec.ts",
+          "line": 31,
+          "column": 5
+        },
+        {
+          "title": "touch controls work, release on cancellation and fit phone and landscape",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13037,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:20:32.724Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "674f8b84c661df5d9f39-4fa8d108d94cd8534c90",
+          "file": "city-roam.spec.ts",
+          "line": 66,
+          "column": 5
+        },
+        {
+          "title": "desktop is clear, the hint expires, and settings own the controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15189,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:20:45.783Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "674f8b84c661df5d9f39-e8e61419da45f33abbfb",
+          "file": "city-roam.spec.ts",
+          "line": 91,
+          "column": 5
+        },
+        {
+          "title": "free-roam place prompt opens a real destination and returns to the player",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13610,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:21:00.989Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "674f8b84c661df5d9f39-1d1d260b0f64d74ad537",
+          "file": "city-roam.spec.ts",
+          "line": 132,
+          "column": 5
+        },
+        {
+          "title": "visit marker follows the destination when looking around at 1440",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12436,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:21:14.620Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "674f8b84c661df5d9f39-0c3c47e9bb8f8be4f890",
+          "file": "city-roam.spec.ts",
+          "line": 147,
+          "column": 38
+        },
+        {
+          "title": "visit marker follows the destination when looking around at 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11426,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:21:27.077Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "674f8b84c661df5d9f39-1e1687bc9cb29cd9e820",
+          "file": "city-roam.spec.ts",
+          "line": 147,
+          "column": 38
+        }
+      ]
+    },
+    {
+      "title": "home.spec.ts",
+      "file": "home.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "journey layout and accessibility at 375",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11554,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:21:38.552Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-5aa36bade557338a3f92",
+          "file": "home.spec.ts",
+          "line": 34,
+          "column": 7
+        },
+        {
+          "title": "journey layout and accessibility at 768",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9819,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:21:50.128Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-9005d7e25b744d3d2db2",
+          "file": "home.spec.ts",
+          "line": 34,
+          "column": 7
+        },
+        {
+          "title": "journey layout and accessibility at 1024",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9546,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:21:59.961Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-269f38ac30cbfa1f39da",
+          "file": "home.spec.ts",
+          "line": 34,
+          "column": 7
+        },
+        {
+          "title": "journey layout and accessibility at 1440",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11554,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:22:09.525Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-1825b9f34b68822b6869",
+          "file": "home.spec.ts",
+          "line": 34,
+          "column": 7
+        },
+        {
+          "title": "cinematic chapters reverse to the same camera positions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14757,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:22:21.097Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-ba2e1e61295e018f880b",
+          "file": "home.spec.ts",
+          "line": 52,
+          "column": 5
+        },
+        {
+          "title": "keyboard chapter links, rapid scroll and replay preserve navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3102,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:22:35.863Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-37763e6c54ec44bd4cea",
+          "file": "home.spec.ts",
+          "line": 64,
+          "column": 5
+        },
+        {
+          "title": "cinematic CTAs, authentic logo, transparent header and scene posters",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6151,
+                  "error": {
+                    "message": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:4410\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:4410/assets/journey/scenes/welcome.webp\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.64.1 (x64; windows 10.0) node/22.23\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n",
+                    "stack": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:4410\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:4410/assets/journey/scenes/welcome.webp\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.64.1 (x64; windows 10.0) node/22.23\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:89:153",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 153,
+                      "line": 89
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 87 |\u001b[39m     \u001b[36mawait\u001b[39m chapter(page\u001b[33m,\u001b[39m id)\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m label\u001b[33m,\u001b[39m exact\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m }))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'href'\u001b[39m\u001b[33m,\u001b[39m href)\u001b[33m;\u001b[39m\n \u001b[90m 88 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 89 |\u001b[39m   \u001b[36mfor\u001b[39m (\u001b[36mconst\u001b[39m id \u001b[36mof\u001b[39m [\u001b[32m'welcome'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'entry'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'follow'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'predict'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'knowledge'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'games'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'city'\u001b[39m]) \u001b[36mfor\u001b[39m (\u001b[36mconst\u001b[39m suffix \u001b[36mof\u001b[39m [\u001b[32m''\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'-mobile'\u001b[39m]) expect((\u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'/assets/journey/scenes/'\u001b[39m \u001b[33m+\u001b[39m id \u001b[33m+\u001b[39m suffix \u001b[33m+\u001b[39m \u001b[32m'.webp'\u001b[39m))\u001b[33m.\u001b[39mok())\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                                                                                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 90 |\u001b[39m   \u001b[36mawait\u001b[39m chapter(page\u001b[33m,\u001b[39m \u001b[32m'city'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 91 |\u001b[39m   expect(\u001b[36mawait\u001b[39m header\u001b[33m.\u001b[39mevaluate(el \u001b[33m=>\u001b[39m getComputedStyle(el)\u001b[33m.\u001b[39mbackgroundColor))\u001b[33m.\u001b[39mtoBe(\u001b[32m'rgba(0, 0, 0, 0)'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 92 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Opening journey'\u001b[39m }))\u001b[33m.\u001b[39mtoBeHidden()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 153,
+                        "line": 89
+                      },
+                      "message": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:4410\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:4410/assets/journey/scenes/welcome.webp\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.64.1 (x64; windows 10.0) node/22.23\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n\n  87 |     await chapter(page, id); await expect(page.getByRole('link', { name: label, exact: true })).toHaveAttribute('href', href);\n  88 |   }\n> 89 |   for (const id of ['welcome', 'entry', 'follow', 'predict', 'knowledge', 'games', 'city']) for (const suffix of ['', '-mobile']) expect((await request.get('/assets/journey/scenes/' + id + suffix + '.webp')).ok()).toBe(true);\n     |                                                                                                                                                         ^\n  90 |   await chapter(page, 'city');\n  91 |   expect(await header.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgba(0, 0, 0, 0)');\n  92 |   await expect(page.getByRole('navigation', { name: 'Opening journey' })).toBeHidden();\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:89:153"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:22:38.975Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-cinematic-CTAs-authen-1635d-nt-header-and-scene-posters\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 153,
+                    "line": 89
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-b0a091aec0c107c2f3f5",
+          "file": "home.spec.ts",
+          "line": 79,
+          "column": 5
+        },
+        {
+          "title": "one canvas supports Settings free roam and scrolling back from overview",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1326,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at ready3D (c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:28:14)\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:96:3",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 14,
+                      "line": 28
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 26 |\u001b[39m \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m ready3D(page\u001b[33m:\u001b[39m \u001b[33mPage\u001b[39m) {\n \u001b[90m 27 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39maddInitScript(() \u001b[33m=>\u001b[39m sessionStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'statoz-city-force-3d'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'true'\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 28 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 29 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-scene-status]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-scene-status'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'ready'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'html'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-city-assets'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'loaded'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 31 |\u001b[39m }\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 14,
+                        "line": 28
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  26 | async function ready3D(page: Page) {\n  27 |   await page.addInitScript(() => sessionStorage.setItem('statoz-city-force-3d', 'true'));\n> 28 |   await page.goto('/');\n     |              ^\n  29 |   await expect(page.locator('[data-scene-status]')).toHaveAttribute('data-scene-status', 'ready', { timeout: 60000 });\n  30 |   await expect(page.locator('html')).toHaveAttribute('data-city-assets', 'loaded', { timeout: 60000 });\n  31 | }\n    at ready3D (c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:28:14)\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:96:3"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:22:55.007Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-one-canvas-supports-S-5ea00-crolling-back-from-overview\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 14,
+                    "line": 28
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-a9b6902cb403a4756826",
+          "file": "home.spec.ts",
+          "line": 95,
+          "column": 5
+        },
+        {
+          "title": "grounds retain products and Escape restores focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1316,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:113:14",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 14,
+                      "line": 113
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 111 |\u001b[39m\n \u001b[90m 112 |\u001b[39m test(\u001b[32m'grounds retain products and Escape restores focus'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 113 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m chapter(page\u001b[33m,\u001b[39m \u001b[32m'city'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 114 |\u001b[39m   \u001b[36mfor\u001b[39m (\u001b[36mconst\u001b[39m [sport\u001b[33m,\u001b[39m title] \u001b[36mof\u001b[39m [[\u001b[32m'Basketball'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'The Blacktop'\u001b[39m]\u001b[33m,\u001b[39m [\u001b[32m'Cricket'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'The Oval'\u001b[39m]\u001b[33m,\u001b[39m [\u001b[32m'Football'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'The Floodlights'\u001b[39m]\u001b[33m,\u001b[39m [\u001b[32m'Racing'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'Neon Circuit'\u001b[39m]]) {\n \u001b[90m 115 |\u001b[39m     \u001b[36mconst\u001b[39m ground \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Sports grounds'\u001b[39m })\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mRegExp\u001b[39m(sport) })\u001b[33m;\u001b[39m\n \u001b[90m 116 |\u001b[39m     \u001b[36mawait\u001b[39m ground\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-city-hud] h2'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(title)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 14,
+                        "line": 113
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  111 |\n  112 | test('grounds retain products and Escape restores focus', async ({ page }) => {\n> 113 |   await page.goto('/'); await chapter(page, 'city');\n      |              ^\n  114 |   for (const [sport, title] of [['Basketball', 'The Blacktop'], ['Cricket', 'The Oval'], ['Football', 'The Floodlights'], ['Racing', 'Neon Circuit']]) {\n  115 |     const ground = page.getByRole('navigation', { name: 'Sports grounds' }).getByRole('link', { name: new RegExp(sport) });\n  116 |     await ground.click(); await expect(page.locator('[data-city-hud] h2')).toHaveText(title);\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:113:14"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:23:02.585Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-grounds-retain-products-and-Escape-restores-focus\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 14,
+                    "line": 113
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-493a2fdd1c0dc9e24483",
+          "file": "home.spec.ts",
+          "line": 112,
+          "column": 5
+        },
+        {
+          "title": "city activity pauses and context loss offers recovery",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1280,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at ready3D (c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:28:14)\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:126:3",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 14,
+                      "line": 28
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 26 |\u001b[39m \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m ready3D(page\u001b[33m:\u001b[39m \u001b[33mPage\u001b[39m) {\n \u001b[90m 27 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39maddInitScript(() \u001b[33m=>\u001b[39m sessionStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'statoz-city-force-3d'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'true'\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 28 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 29 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-scene-status]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-scene-status'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'ready'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'html'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-city-assets'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'loaded'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 31 |\u001b[39m }\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 14,
+                        "line": 28
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  26 | async function ready3D(page: Page) {\n  27 |   await page.addInitScript(() => sessionStorage.setItem('statoz-city-force-3d', 'true'));\n> 28 |   await page.goto('/');\n     |              ^\n  29 |   await expect(page.locator('[data-scene-status]')).toHaveAttribute('data-scene-status', 'ready', { timeout: 60000 });\n  30 |   await expect(page.locator('html')).toHaveAttribute('data-city-assets', 'loaded', { timeout: 60000 });\n  31 | }\n    at ready3D (c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:28:14)\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:126:3"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:23:06.238Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-city-activity-pauses-and-context-loss-offers-recovery\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 14,
+                    "line": 28
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-f959cc79619b5a036ccf",
+          "file": "home.spec.ts",
+          "line": 125,
+          "column": 5
+        },
+        {
+          "title": "guide and legacy deep links enter the city; Back leaves a venue",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 450,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/#city/help\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/#city/help\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/#city/help\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/#city/help\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:146:14",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 14,
+                      "line": 146
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 144 |\u001b[39m\n \u001b[90m 145 |\u001b[39m test(\u001b[32m'guide and legacy deep links enter the city; Back leaves a venue'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 146 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/#city/help'\u001b[39m)\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-city-actions]'\u001b[39m)\u001b[33m.\u001b[39mgetByRole(\u001b[32m'button'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/City guide/\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 147 |\u001b[39m   \u001b[36mconst\u001b[39m directory \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'navigation'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'All city destinations'\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 148 |\u001b[39m   \u001b[36mawait\u001b[39m expect(directory\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m))\u001b[33m.\u001b[39mtoHaveCount(\u001b[35m9\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m   \u001b[36mawait\u001b[39m directory\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/Cricket/\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 14,
+                        "line": 146
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/#city/help\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/#city/help\", waiting until \"load\"\u001b[22m\n\n\n  144 |\n  145 | test('guide and legacy deep links enter the city; Back leaves a venue', async ({ page }) => {\n> 146 |   await page.goto('/#city/help'); await page.locator('[data-city-actions]').getByRole('button', { name: /City guide/ }).click();\n      |              ^\n  147 |   const directory = page.getByRole('navigation', { name: 'All city destinations' });\n  148 |   await expect(directory.getByRole('link')).toHaveCount(9);\n  149 |   await directory.getByRole('link', { name: /Cricket/ }).click();\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:146:14"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:23:08.928Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-guide-and-legacy-deep-68408-he-city-Back-leaves-a-venue\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 14,
+                    "line": 146
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-37091e9020702715a0e7",
+          "file": "home.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "reduced motion and failed WebGL keep the complete usable story",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 197,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:162:54",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 54,
+                      "line": 162
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 160 |\u001b[39m     \u001b[36mconst\u001b[39m context \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m browser\u001b[33m.\u001b[39mnewContext({ reducedMotion\u001b[33m:\u001b[39m reduced \u001b[33m?\u001b[39m \u001b[32m'reduce'\u001b[39m \u001b[33m:\u001b[39m \u001b[32m'no-preference'\u001b[39m\u001b[33m,\u001b[39m viewport\u001b[33m:\u001b[39m { width\u001b[33m:\u001b[39m \u001b[35m375\u001b[39m\u001b[33m,\u001b[39m height\u001b[33m:\u001b[39m \u001b[35m812\u001b[39m } })\u001b[33m;\u001b[39m\n \u001b[90m 161 |\u001b[39m     \u001b[36mif\u001b[39m (\u001b[33m!\u001b[39mreduced) \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39maddInitScript(() \u001b[33m=>\u001b[39m { \u001b[33mHTMLCanvasElement\u001b[39m\u001b[33m.\u001b[39mprototype\u001b[33m.\u001b[39mgetContext \u001b[33m=\u001b[39m (() \u001b[33m=>\u001b[39m \u001b[36mnull\u001b[39m) \u001b[36mas\u001b[39m \u001b[36mtypeof\u001b[39m \u001b[33mHTMLCanvasElement\u001b[39m\u001b[33m.\u001b[39mprototype\u001b[33m.\u001b[39mgetContext\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 162 |\u001b[39m     \u001b[36mconst\u001b[39m page \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39mnewPage()\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(baseURL\u001b[33m!\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 163 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-simple]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-simple'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'true'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 164 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'canvas'\u001b[39m))\u001b[33m.\u001b[39mtoHaveCount(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 165 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-scene-status]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-arrival'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'settled'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 54,
+                        "line": 162
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  160 |     const context = await browser.newContext({ reducedMotion: reduced ? 'reduce' : 'no-preference', viewport: { width: 375, height: 812 } });\n  161 |     if (!reduced) await context.addInitScript(() => { HTMLCanvasElement.prototype.getContext = (() => null) as typeof HTMLCanvasElement.prototype.getContext; });\n> 162 |     const page = await context.newPage(); await page.goto(baseURL!);\n      |                                                      ^\n  163 |     await expect(page.locator('[data-simple]')).toHaveAttribute('data-simple', 'true');\n  164 |     await expect(page.locator('canvas')).toHaveCount(0);\n  165 |     await expect(page.locator('[data-scene-status]')).toHaveAttribute('data-arrival', 'settled');\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:162:54"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:23:12.144Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-reduced-motion-and-fa-fc813-p-the-complete-usable-story\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 54,
+                    "line": 162
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-10d2245e4561c272349d",
+          "file": "home.spec.ts",
+          "line": 158,
+          "column": 5
+        },
+        {
+          "title": "touch scrolls through the journey and back from the city",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 395,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:183:52",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 52,
+                      "line": 183
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 181 |\u001b[39m test(\u001b[32m'touch scrolls through the journey and back from the city'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ browser\u001b[33m,\u001b[39m baseURL }) \u001b[33m=>\u001b[39m {\n \u001b[90m 182 |\u001b[39m   \u001b[36mconst\u001b[39m context \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m browser\u001b[33m.\u001b[39mnewContext({ viewport\u001b[33m:\u001b[39m { width\u001b[33m:\u001b[39m \u001b[35m390\u001b[39m\u001b[33m,\u001b[39m height\u001b[33m:\u001b[39m \u001b[35m844\u001b[39m }\u001b[33m,\u001b[39m hasTouch\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m\u001b[33m,\u001b[39m isMobile\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 183 |\u001b[39m   \u001b[36mconst\u001b[39m page \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39mnewPage()\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(baseURL\u001b[33m!\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 184 |\u001b[39m   \u001b[36mconst\u001b[39m input \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39mnewCDPSession(page)\u001b[33m;\u001b[39m\n \u001b[90m 185 |\u001b[39m   \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m swipe(startY\u001b[33m:\u001b[39m number\u001b[33m,\u001b[39m endY\u001b[33m:\u001b[39m number) {\n \u001b[90m 186 |\u001b[39m     \u001b[36mawait\u001b[39m input\u001b[33m.\u001b[39msend(\u001b[32m'Input.dispatchTouchEvent'\u001b[39m\u001b[33m,\u001b[39m { type\u001b[33m:\u001b[39m \u001b[32m'touchStart'\u001b[39m\u001b[33m,\u001b[39m touchPoints\u001b[33m:\u001b[39m [{ x\u001b[33m:\u001b[39m \u001b[35m210\u001b[39m\u001b[33m,\u001b[39m y\u001b[33m:\u001b[39m startY }] })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 52,
+                        "line": 183
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  181 | test('touch scrolls through the journey and back from the city', async ({ browser, baseURL }) => {\n  182 |   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });\n> 183 |   const page = await context.newPage(); await page.goto(baseURL!);\n      |                                                    ^\n  184 |   const input = await context.newCDPSession(page);\n  185 |   async function swipe(startY: number, endY: number) {\n  186 |     await input.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 210, y: startY }] });\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:183:52"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:23:16.726Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-touch-scrolls-through-e67e1-rney-and-back-from-the-city\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 52,
+                    "line": 183
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-35c336e3f73c5b4dbba9",
+          "file": "home.spec.ts",
+          "line": 181,
+          "column": 5
+        },
+        {
+          "title": "landscape retains usable CTAs and grounds",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1507,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:197:71",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 71,
+                      "line": 197
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 195 |\u001b[39m\n \u001b[90m 196 |\u001b[39m test(\u001b[32m'landscape retains usable CTAs and grounds'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 197 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39msetViewportSize({ width\u001b[33m:\u001b[39m \u001b[35m812\u001b[39m\u001b[33m,\u001b[39m height\u001b[33m:\u001b[39m \u001b[35m375\u001b[39m })\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m chapter(page\u001b[33m,\u001b[39m \u001b[32m'knowledge'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 198 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Take a quiz'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 199 |\u001b[39m   expect(\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m document\u001b[33m.\u001b[39mdocumentElement\u001b[33m.\u001b[39mscrollWidth \u001b[33m<=\u001b[39m innerWidth))\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 200 |\u001b[39m   \u001b[36mawait\u001b[39m chapter(page\u001b[33m,\u001b[39m\u001b[32m'games'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 71,
+                        "line": 197
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  195 |\n  196 | test('landscape retains usable CTAs and grounds', async ({ page }) => {\n> 197 |   await page.setViewportSize({ width: 812, height: 375 }); await page.goto('/'); await chapter(page, 'knowledge');\n      |                                                                       ^\n  198 |   await expect(page.getByRole('link', { name: 'Take a quiz' })).toBeVisible();\n  199 |   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);\n  200 |   await chapter(page,'games');\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:197:71"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:23:22.608Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-landscape-retains-usable-CTAs-and-grounds\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 71,
+                    "line": 197
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-d8e9f0dd27fd5a975e4a",
+          "file": "home.spec.ts",
+          "line": 196,
+          "column": 5
+        },
+        {
+          "title": "the drive reverses through the cockpit and the logo rests in the header",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5580,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at ready3D (c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:28:14)\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:212:3",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 14,
+                      "line": 28
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 26 |\u001b[39m \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m ready3D(page\u001b[33m:\u001b[39m \u001b[33mPage\u001b[39m) {\n \u001b[90m 27 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39maddInitScript(() \u001b[33m=>\u001b[39m sessionStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'statoz-city-force-3d'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'true'\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 28 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 29 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-scene-status]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-scene-status'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'ready'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'html'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-city-assets'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'loaded'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 31 |\u001b[39m }\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 14,
+                        "line": 28
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  26 | async function ready3D(page: Page) {\n  27 |   await page.addInitScript(() => sessionStorage.setItem('statoz-city-force-3d', 'true'));\n> 28 |   await page.goto('/');\n     |              ^\n  29 |   await expect(page.locator('[data-scene-status]')).toHaveAttribute('data-scene-status', 'ready', { timeout: 60000 });\n  30 |   await expect(page.locator('html')).toHaveAttribute('data-city-assets', 'loaded', { timeout: 60000 });\n  31 | }\n    at ready3D (c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:28:14)\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:212:3"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:23:35.856Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-the-drive-reverses-th-e5230-he-logo-rests-in-the-header\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 14,
+                    "line": 28
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-09df1c98c31654e51c88",
+          "file": "home.spec.ts",
+          "line": 211,
+          "column": 5
+        },
+        {
+          "title": "arrival builds the logo while loading, lights the city once per session, and yields to input",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3336,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:235:52",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 52,
+                      "line": 235
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 233 |\u001b[39m   \u001b[36mconst\u001b[39m context \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m browser\u001b[33m.\u001b[39mnewContext({ viewport\u001b[33m:\u001b[39m { width\u001b[33m:\u001b[39m \u001b[35m1440\u001b[39m\u001b[33m,\u001b[39m height\u001b[33m:\u001b[39m \u001b[35m900\u001b[39m } })\u001b[33m;\u001b[39m\n \u001b[90m 234 |\u001b[39m   \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39maddInitScript(() \u001b[33m=>\u001b[39m sessionStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'statoz-city-force-3d'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'true'\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 235 |\u001b[39m   \u001b[36mconst\u001b[39m page \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39mnewPage()\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(baseURL\u001b[33m!\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 236 |\u001b[39m   \u001b[36mconst\u001b[39m shell \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-scene-status]'\u001b[39m)\u001b[33m,\u001b[39m loader \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'status'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Loading StatOz City'\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 237 |\u001b[39m   \u001b[36mawait\u001b[39m expect(loader)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 238 |\u001b[39m   \u001b[36mawait\u001b[39m expect(shell)\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-arrival'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'reveal'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m90000\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 52,
+                        "line": 235
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  233 |   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });\n  234 |   await context.addInitScript(() => sessionStorage.setItem('statoz-city-force-3d', 'true'));\n> 235 |   const page = await context.newPage(); await page.goto(baseURL!);\n      |                                                    ^\n  236 |   const shell = page.locator('[data-scene-status]'), loader = page.getByRole('status', { name: 'Loading StatOz City' });\n  237 |   await expect(loader).toBeVisible();\n  238 |   await expect(shell).toHaveAttribute('data-arrival', 'reveal', { timeout: 90000 });\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:235:52"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:23:50.378Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-arrival-builds-the-lo-47bef-session-and-yields-to-input\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 52,
+                    "line": 235
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-5510dad0c218693d13b8",
+          "file": "home.spec.ts",
+          "line": 232,
+          "column": 5
+        },
+        {
+          "title": "four themed chapter details retain real product destinations and respond to choices",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7231,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:263:14",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 14,
+                      "line": 263
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 261 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39memulateMedia({ reducedMotion\u001b[33m:\u001b[39m \u001b[32m'reduce'\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 262 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39maddInitScript(() \u001b[33m=>\u001b[39m sessionStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'statoz-drive-missions-v1'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mJSON\u001b[39m\u001b[33m.\u001b[39mstringify({ choice\u001b[33m:\u001b[39m{sport\u001b[33m:\u001b[39m\u001b[32m'Football'\u001b[39m\u001b[33m,\u001b[39mgame\u001b[33m:\u001b[39m\u001b[32m'portfolio-formula'\u001b[39m}\u001b[33m,\u001b[39m visited\u001b[33m:\u001b[39m[\u001b[32m'predict'\u001b[39m] })))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 263 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 264 |\u001b[39m   \u001b[36mfor\u001b[39m (\u001b[36mconst\u001b[39m [id\u001b[33m,\u001b[39mlabel\u001b[33m,\u001b[39mhref] \u001b[36mof\u001b[39m [[\u001b[32m'follow'\u001b[39m\u001b[33m,\u001b[39m\u001b[32m'Start following'\u001b[39m\u001b[33m,\u001b[39m\u001b[32m'https://web.statoz.in/'\u001b[39m]\u001b[33m,\u001b[39m[\u001b[32m'predict'\u001b[39m\u001b[33m,\u001b[39m\u001b[32m'Make a prediction'\u001b[39m\u001b[33m,\u001b[39m\u001b[32m'https://web.statoz.in/'\u001b[39m]\u001b[33m,\u001b[39m[\u001b[32m'knowledge'\u001b[39m\u001b[33m,\u001b[39m\u001b[32m'Take a quiz'\u001b[39m\u001b[33m,\u001b[39m\u001b[32m'https://web.statoz.in/quiz/'\u001b[39m]\u001b[33m,\u001b[39m[\u001b[32m'games'\u001b[39m\u001b[33m,\u001b[39m\u001b[32m'Find my game'\u001b[39m\u001b[33m,\u001b[39m\u001b[32m'https://games.statoz.in/'\u001b[39m]]) {\n \u001b[90m 265 |\u001b[39m     \u001b[36mawait\u001b[39m chapter(page\u001b[33m,\u001b[39mid)\u001b[33m;\u001b[39m\n \u001b[90m 266 |\u001b[39m     \u001b[36mconst\u001b[39m section\u001b[33m=\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m`[data-journey-chapter=\"${id}\"]`\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 14,
+                        "line": 263
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  261 |   await page.emulateMedia({ reducedMotion: 'reduce' });\n  262 |   await page.addInitScript(() => sessionStorage.setItem('statoz-drive-missions-v1', JSON.stringify({ choice:{sport:'Football',game:'portfolio-formula'}, visited:['predict'] })));\n> 263 |   await page.goto('/');\n      |              ^\n  264 |   for (const [id,label,href] of [['follow','Start following','https://web.statoz.in/'],['predict','Make a prediction','https://web.statoz.in/'],['knowledge','Take a quiz','https://web.statoz.in/quiz/'],['games','Find my game','https://games.statoz.in/']]) {\n  265 |     await chapter(page,id);\n  266 |     const section=page.locator(`[data-journey-chapter=\"${id}\"]`);\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:263:14"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:24:12.568Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-four-themed-chapter-d-336be-ions-and-respond-to-choices\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 14,
+                    "line": 263
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-7e3f586a59ff6786bda8",
+          "file": "home.spec.ts",
+          "line": 260,
+          "column": 5
+        },
+        {
+          "title": "story and directory work without JavaScript",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 234,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:298:52",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 52,
+                      "line": 298
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 296 |\u001b[39m test(\u001b[32m'story and directory work without JavaScript'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ browser\u001b[33m,\u001b[39m baseURL }) \u001b[33m=>\u001b[39m {\n \u001b[90m 297 |\u001b[39m   \u001b[36mconst\u001b[39m context \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m browser\u001b[33m.\u001b[39mnewContext({ javaScriptEnabled\u001b[33m:\u001b[39m \u001b[36mfalse\u001b[39m\u001b[33m,\u001b[39m viewport\u001b[33m:\u001b[39m { width\u001b[33m:\u001b[39m \u001b[35m375\u001b[39m\u001b[33m,\u001b[39m height\u001b[33m:\u001b[39m \u001b[35m900\u001b[39m } })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 298 |\u001b[39m   \u001b[36mconst\u001b[39m page \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39mnewPage()\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(baseURL\u001b[33m!\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 299 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { level\u001b[33m:\u001b[39m \u001b[35m1\u001b[39m }))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'StatOz Wizard'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 300 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-journey-chapter]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveCount(\u001b[35m7\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 301 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Take a quiz'\u001b[39m }))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'href'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'https://web.statoz.in/quiz/'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 52,
+                        "line": 298
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  296 | test('story and directory work without JavaScript', async ({ browser, baseURL }) => {\n  297 |   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 375, height: 900 } });\n> 298 |   const page = await context.newPage(); await page.goto(baseURL!);\n      |                                                    ^\n  299 |   await expect(page.getByRole('heading', { level: 1 })).toContainText('StatOz Wizard');\n  300 |   await expect(page.locator('[data-journey-chapter]')).toHaveCount(7);\n  301 |   await expect(page.getByRole('link', { name: 'Take a quiz' })).toHaveAttribute('href', 'https://web.statoz.in/quiz/');\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:298:52"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:24:44.395Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-story-and-directory-work-without-JavaScript\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 52,
+                    "line": 298
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-581a0c849a9c5178911a",
+          "file": "home.spec.ts",
+          "line": 296,
+          "column": 5
+        },
+        {
+          "title": "retained pages and asset provenance resolve",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 30,
+                  "error": {
+                    "message": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:4410\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:4410/about\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.64.1 (x64; windows 10.0) node/22.23\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n",
+                    "stack": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:4410\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:4410/about\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.64.1 (x64; windows 10.0) node/22.23\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:309:322",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 322,
+                      "line": 309
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 307 |\u001b[39m\n \u001b[90m 308 |\u001b[39m test(\u001b[32m'retained pages and asset provenance resolve'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ request }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 309 |\u001b[39m   \u001b[36mfor\u001b[39m (\u001b[36mconst\u001b[39m route \u001b[36mof\u001b[39m [\u001b[32m'/about'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/blog'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/blog/how-statoz-prediction-quiz-works'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/download'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/faq'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/termsAndConditions'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/privacyPolicy'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/games/pitch-duel'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/sitemap.xml'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/robots.txt'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/manifest.webmanifest'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/predict'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/assets/city/manifest.json'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'/assets/journey/manifest.json'\u001b[39m]) expect((\u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(route))\u001b[33m.\u001b[39mstatus()\u001b[33m,\u001b[39m route)\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                                                                                                                                                                                                                                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 310 |\u001b[39m   expect((\u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'/not-a-real-page'\u001b[39m))\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m404\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 311 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 312 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 322,
+                        "line": 309
+                      },
+                      "message": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:4410\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:4410/about\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.64.1 (x64; windows 10.0) node/22.23\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n\n  307 |\n  308 | test('retained pages and asset provenance resolve', async ({ request }) => {\n> 309 |   for (const route of ['/about', '/blog', '/blog/how-statoz-prediction-quiz-works', '/download', '/faq', '/termsAndConditions', '/privacyPolicy', '/games/pitch-duel', '/sitemap.xml', '/robots.txt', '/manifest.webmanifest', '/predict', '/assets/city/manifest.json', '/assets/journey/manifest.json']) expect((await request.get(route)).status(), route).toBe(200);\n      |                                                                                                                                                                                                                                                                                                                                  ^\n  310 |   expect((await request.get('/not-a-real-page')).status()).toBe(404);\n  311 | });\n  312 |\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:309:322"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:24:48.127Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-retained-pages-and-asset-provenance-resolve\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 322,
+                    "line": 309
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-306839d2dc3be9aa5062",
+          "file": "home.spec.ts",
+          "line": 308,
+          "column": 5
+        },
+        {
+          "title": "place links open cold; landmarks use full pages; steps and credits stay in the city",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1361,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/#city/city-hall\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/#city/city-hall\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/#city/city-hall\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/#city/city-hall\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:314:14",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 14,
+                      "line": 314
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 312 |\u001b[39m\n \u001b[90m 313 |\u001b[39m test(\u001b[32m'place links open cold; landmarks use full pages; steps and credits stay in the city'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 314 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/#city/city-hall'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 315 |\u001b[39m   \u001b[36mconst\u001b[39m hud \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-city-hud]'\u001b[39m)\u001b[33m,\u001b[39m actions \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-city-actions]'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 316 |\u001b[39m   \u001b[36mawait\u001b[39m expect(hud\u001b[33m.\u001b[39mlocator(\u001b[32m'h2'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'City Hall'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 317 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-scene-status]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-journey'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'false'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 14,
+                        "line": 314
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/#city/city-hall\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/#city/city-hall\", waiting until \"load\"\u001b[22m\n\n\n  312 |\n  313 | test('place links open cold; landmarks use full pages; steps and credits stay in the city', async ({ page }) => {\n> 314 |   await page.goto('/#city/city-hall');\n      |              ^\n  315 |   const hud = page.locator('[data-city-hud]'), actions = page.locator('[data-city-actions]');\n  316 |   await expect(hud.locator('h2')).toHaveText('City Hall');\n  317 |   await expect(page.locator('[data-scene-status]')).toHaveAttribute('data-journey', 'false');\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:314:14"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:24:51.259Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-place-links-open-cold-cdfb3-nd-credits-stay-in-the-city\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 14,
+                    "line": 314
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-80cbd67ab2d1ab478beb",
+          "file": "home.spec.ts",
+          "line": 313,
+          "column": 5
+        },
+        {
+          "title": "wheel scrolling glides: the camera never jumps between frames",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 14,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1598,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:346:72",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 72,
+                      "line": 346
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 344 |\u001b[39m test(\u001b[32m'wheel scrolling glides: the camera never jumps between frames'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 345 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39maddInitScript(() \u001b[33m=>\u001b[39m { sessionStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'statoz-city-force-3d'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'true'\u001b[39m)\u001b[33m;\u001b[39m sessionStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'statoz-arrival-v3'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'true'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 346 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39msetViewportSize({ width\u001b[33m:\u001b[39m \u001b[35m1440\u001b[39m\u001b[33m,\u001b[39m height\u001b[33m:\u001b[39m \u001b[35m900\u001b[39m })\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 347 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-scene-status]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-arrival'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'settled'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m90000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 348 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m {\n \u001b[90m 349 |\u001b[39m     \u001b[36mconst\u001b[39m host \u001b[33m=\u001b[39m document\u001b[33m.\u001b[39mquerySelector\u001b[33m<\u001b[39m\u001b[33mHTMLElement\u001b[39m\u001b[33m>\u001b[39m(\u001b[32m'[data-city-scene]'\u001b[39m)\u001b[33m!\u001b[39m\u001b[33m,\u001b[39m samples\u001b[33m:\u001b[39m number[][] \u001b[33m=\u001b[39m []\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 72,
+                        "line": 346
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  344 | test('wheel scrolling glides: the camera never jumps between frames', async ({ page }) => {\n  345 |   await page.addInitScript(() => { sessionStorage.setItem('statoz-city-force-3d', 'true'); sessionStorage.setItem('statoz-arrival-v3', 'true'); });\n> 346 |   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/');\n      |                                                                        ^\n  347 |   await expect(page.locator('[data-scene-status]')).toHaveAttribute('data-arrival', 'settled', { timeout: 90000 });\n  348 |   await page.evaluate(() => {\n  349 |     const host = document.querySelector<HTMLElement>('[data-city-scene]')!, samples: number[][] = [];\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:346:72"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:24:54.742Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-wheel-scrolling-glide-4fd12--never-jumps-between-frames\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 72,
+                    "line": 346
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-c407c330bd6f913a48f3",
+          "file": "home.spec.ts",
+          "line": 344,
+          "column": 5
+        },
+        {
+          "title": "nothing solid stands in a road, traffic keeps clear of the drive, and App Station uses brand art",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3458,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at ready3D (c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:28:14)\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:369:3",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 14,
+                      "line": 28
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 26 |\u001b[39m \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m ready3D(page\u001b[33m:\u001b[39m \u001b[33mPage\u001b[39m) {\n \u001b[90m 27 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39maddInitScript(() \u001b[33m=>\u001b[39m sessionStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'statoz-city-force-3d'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'true'\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 28 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 29 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-scene-status]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-scene-status'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'ready'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'html'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-city-assets'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'loaded'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 31 |\u001b[39m }\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 14,
+                        "line": 28
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  26 | async function ready3D(page: Page) {\n  27 |   await page.addInitScript(() => sessionStorage.setItem('statoz-city-force-3d', 'true'));\n> 28 |   await page.goto('/');\n     |              ^\n  29 |   await expect(page.locator('[data-scene-status]')).toHaveAttribute('data-scene-status', 'ready', { timeout: 60000 });\n  30 |   await expect(page.locator('html')).toHaveAttribute('data-city-assets', 'loaded', { timeout: 60000 });\n  31 | }\n    at ready3D (c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:28:14)\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:369:3"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:24:58.627Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-nothing-solid-stands--5c0ad--App-Station-uses-brand-art\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 14,
+                    "line": 28
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-b887380e8c690f5623ac",
+          "file": "home.spec.ts",
+          "line": 366,
+          "column": 5
+        },
+        {
+          "title": "each idea is stated once in the opening",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1320,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:379:14",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 14,
+                      "line": 379
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 377 |\u001b[39m\n \u001b[90m 378 |\u001b[39m test(\u001b[32m'each idea is stated once in the opening'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 379 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 380 |\u001b[39m   \u001b[36mconst\u001b[39m copy \u001b[33m=\u001b[39m (\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-journey-chapter]'\u001b[39m)\u001b[33m.\u001b[39mallTextContents())\u001b[33m.\u001b[39mjoin(\u001b[32m' '\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 381 |\u001b[39m   expect(copy\u001b[33m.\u001b[39mmatch(\u001b[35m/your teams/gi\u001b[39m)\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mlength \u001b[33m?\u001b[39m\u001b[33m?\u001b[39m \u001b[35m0\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m1\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 382 |\u001b[39m   expect(copy\u001b[33m.\u001b[39mmatch(\u001b[35m/home ground/gi\u001b[39m)\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mlength \u001b[33m?\u001b[39m\u001b[33m?\u001b[39m \u001b[35m0\u001b[39m)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(\u001b[35m1\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 14,
+                        "line": 379
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  377 |\n  378 | test('each idea is stated once in the opening', async ({ page }) => {\n> 379 |   await page.goto('/');\n      |              ^\n  380 |   const copy = (await page.locator('[data-journey-chapter]').allTextContents()).join(' ');\n  381 |   expect(copy.match(/your teams/gi)?.length ?? 0).toBe(1);\n  382 |   expect(copy.match(/home ground/gi)?.length ?? 0).toBeLessThanOrEqual(1);\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:379:14"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:25:05.918Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-each-idea-is-stated-once-in-the-opening\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 14,
+                    "line": 379
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-90d471e0a8d120c5b797",
+          "file": "home.spec.ts",
+          "line": 378,
+          "column": 5
+        },
+        {
+          "title": "city sound is off by default and starts only from the Settings toggle",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 17,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1775,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:397:14",
+                    "location": {
+                      "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                      "column": 14,
+                      "line": 397
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 395 |\u001b[39m     window\u001b[33m.\u001b[39m\u001b[33mAudioContext\u001b[39m \u001b[33m=\u001b[39m \u001b[36mclass\u001b[39m \u001b[36mextends\u001b[39m \u001b[33mNative\u001b[39m { constructor(options\u001b[33m?\u001b[39m\u001b[33m:\u001b[39m \u001b[33mAudioContextOptions\u001b[39m) { \u001b[36msuper\u001b[39m(options)\u001b[33m;\u001b[39m made\u001b[33m++\u001b[39m\u001b[33m;\u001b[39m } } \u001b[36mas\u001b[39m \u001b[36mtypeof\u001b[39m \u001b[33mAudioContext\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 396 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 397 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 398 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-enhanced]'\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'data-enhanced'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'true'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 399 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'button'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Settings'\u001b[39m\u001b[33m,\u001b[39m exact\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 400 |\u001b[39m   \u001b[36mconst\u001b[39m toggle \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'button'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/City sound/\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                        "column": 14,
+                        "line": 397
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4410/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4410/\", waiting until \"load\"\u001b[22m\n\n\n  395 |     window.AudioContext = class extends Native { constructor(options?: AudioContextOptions) { super(options); made++; } } as typeof AudioContext;\n  396 |   });\n> 397 |   await page.goto('/');\n      |              ^\n  398 |   await expect(page.locator('[data-enhanced]')).toHaveAttribute('data-enhanced', 'true');\n  399 |   await page.getByRole('button', { name: 'Settings', exact: true }).click();\n  400 |   const toggle = page.getByRole('button', { name: /City sound/ });\n    at c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts:397:14"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T17:25:20.178Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\test-results\\home-city-sound-is-off-by--64ff9-ly-from-the-Settings-toggle\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\priya\\Dev\\StatOz\\statoz-website\\tests\\home.spec.ts",
+                    "column": 14,
+                    "line": 397
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-86fdbe1efa504c0b7eec",
+          "file": "home.spec.ts",
+          "line": 391,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-16T17:19:41.952Z",
+    "duration": 341786.727,
+    "expected": 16,
+    "skipped": 0,
+    "unexpected": 18,
+    "flaky": 0
+  }
+}

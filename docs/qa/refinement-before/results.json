@@ -1,0 +1,58 @@
+[
+  {
+    "width": 1440,
+    "errors": [],
+    "stats": {
+      "cityScene": "true",
+      "mode": "tour",
+      "arrival": "settled",
+      "cameraMode": "overview",
+      "carPosition": "48.00,0.00,46.40",
+      "driveDistance": "587.622",
+      "speed": "0.00",
+      "cameraChapter": "welcome",
+      "cameraPosition": "-17.00,5.20,206.00",
+      "quality": "desktop",
+      "people": "298",
+      "athletes": "24",
+      "stands": "12",
+      "activityPaused": "false",
+      "shaderPrograms": "65",
+      "activityTime": "6.621",
+      "logoLanded": "true",
+      "fps": "73.8",
+      "drawCalls": "844",
+      "triangles": "562837"
+    },
+    "layout": "clear",
+    "enhancement": null
+  },
+  {
+    "width": 390,
+    "errors": [],
+    "stats": {
+      "cityScene": "true",
+      "mode": "tour",
+      "arrival": "settled",
+      "cameraMode": "overview",
+      "carPosition": "48.00,0.00,46.40",
+      "driveDistance": "587.622",
+      "speed": "0.00",
+      "cameraChapter": "welcome",
+      "cameraPosition": "-17.00,6.80,210.00",
+      "quality": "mobile",
+      "people": "317",
+      "athletes": "24",
+      "stands": "12",
+      "activityPaused": "false",
+      "shaderPrograms": "53",
+      "activityTime": "6.807",
+      "logoLanded": "true",
+      "fps": "75.0",
+      "drawCalls": "512",
+      "triangles": "366722"
+    },
+    "layout": "clear",
+    "enhancement": null
+  }
+]

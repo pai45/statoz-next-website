@@ -1,0 +1,201 @@
+{
+  "note": "Headless Chromium on the reported NVIDIA GPU. Phone viewport uses browser emulation, not a physical mobile device.",
+  "baselineBeforeDepthWarmup": [
+    {
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti Laptop GPU (0x000024A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": [
+        1440,
+        950
+      ],
+      "rows": [
+        {
+          "id": "welcome",
+          "f": 0,
+          "transitionAnd300msSettle": 574,
+          "programs": 71,
+          "quality": "desktop",
+          "mode": "crest"
+        },
+        {
+          "id": "assembly",
+          "f": 0.65,
+          "transitionAnd300msSettle": 2690,
+          "programs": 75,
+          "quality": "desktop",
+          "mode": "crest"
+        },
+        {
+          "id": "entry",
+          "f": 0.55,
+          "transitionAnd300msSettle": 398,
+          "programs": 76,
+          "quality": "desktop",
+          "mode": "cockpit"
+        },
+        {
+          "id": "follow",
+          "f": 0,
+          "transitionAnd300msSettle": 733,
+          "programs": 79,
+          "quality": "desktop",
+          "mode": "exterior"
+        },
+        {
+          "id": "games",
+          "f": 0,
+          "transitionAnd300msSettle": 387,
+          "programs": 79,
+          "quality": "desktop",
+          "mode": "exterior"
+        },
+        {
+          "id": "city",
+          "f": 0,
+          "transitionAnd300msSettle": 375,
+          "programs": 79,
+          "quality": "desktop",
+          "mode": "overview"
+        },
+        {
+          "id": "entry",
+          "f": 0.55,
+          "transitionAnd300msSettle": 362,
+          "programs": 79,
+          "quality": "desktop",
+          "mode": "cockpit"
+        }
+      ],
+      "frame": {
+        "meanMs": 13.316223404350433,
+        "p95Ms": 13.5,
+        "frames": 376
+      },
+      "errors": []
+    },
+    {
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti Laptop GPU (0x000024A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": [
+        375,
+        812
+      ],
+      "rows": [
+        {
+          "id": "welcome",
+          "f": 0,
+          "transitionAnd300msSettle": 418,
+          "programs": 35,
+          "quality": "mobile",
+          "mode": "crest"
+        },
+        {
+          "id": "assembly",
+          "f": 0.65,
+          "transitionAnd300msSettle": 363,
+          "programs": 35,
+          "quality": "mobile",
+          "mode": "crest"
+        },
+        {
+          "id": "entry",
+          "f": 0.55,
+          "transitionAnd300msSettle": 359,
+          "programs": 35,
+          "quality": "mobile",
+          "mode": "cockpit"
+        },
+        {
+          "id": "follow",
+          "f": 0,
+          "transitionAnd300msSettle": 533,
+          "programs": 35,
+          "quality": "mobile",
+          "mode": "exterior"
+        },
+        {
+          "id": "games",
+          "f": 0,
+          "transitionAnd300msSettle": 400,
+          "programs": 35,
+          "quality": "mobile",
+          "mode": "exterior"
+        },
+        {
+          "id": "city",
+          "f": 0,
+          "transitionAnd300msSettle": 453,
+          "programs": 35,
+          "quality": "mobile",
+          "mode": "overview"
+        },
+        {
+          "id": "entry",
+          "f": 0.55,
+          "transitionAnd300msSettle": 363,
+          "programs": 35,
+          "quality": "mobile",
+          "mode": "cockpit"
+        }
+      ],
+      "frame": {
+        "meanMs": 13.315691489361704,
+        "p95Ms": 13.5,
+        "frames": 376
+      },
+      "errors": []
+    }
+  ],
+  "afterDepthWarmup": {
+    "rows": [
+      {
+        "id": "welcome",
+        "f": 0,
+        "transitionAnd300msSettle": 552,
+        "programs": 80
+      },
+      {
+        "id": "assembly",
+        "f": 0.65,
+        "transitionAnd300msSettle": 458,
+        "programs": 80
+      },
+      {
+        "id": "entry",
+        "f": 0.55,
+        "transitionAnd300msSettle": 373,
+        "programs": 80
+      },
+      {
+        "id": "follow",
+        "f": 0,
+        "transitionAnd300msSettle": 360,
+        "programs": 80
+      },
+      {
+        "id": "predict",
+        "f": 0,
+        "transitionAnd300msSettle": 356,
+        "programs": 80
+      },
+      {
+        "id": "knowledge",
+        "f": 0,
+        "transitionAnd300msSettle": 352,
+        "programs": 80
+      },
+      {
+        "id": "games",
+        "f": 0,
+        "transitionAnd300msSettle": 383,
+        "programs": 80
+      },
+      {
+        "id": "city",
+        "f": 0,
+        "transitionAnd300msSettle": 361,
+        "programs": 80
+      }
+    ],
+    "errors": []
+  },
+  "improvement": "Desktop first assembly transition including a fixed 300 ms settle improved from 2690 ms to 458 ms. Shader programs remain at 80 across every stage after warm-up."
+}
