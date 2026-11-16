@@ -36,6 +36,12 @@ jobs:
       - run: npm run test:pages
         env:
           EXPECTED_COMMIT: ${{ github.sha }}
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: website-browser-diagnostics
+          path: test-results
+          retention-days: 7
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
