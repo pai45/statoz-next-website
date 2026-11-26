@@ -1,45 +1,32 @@
 import * as THREE from 'three';
+import { bodySeparation, playerBody, type CityBody, type CityContact } from './city-contact';
 import { CITY_LOCATIONS, CITY_PALETTE as P, type CityLocationId } from './city-config';
-import { createDriveCar } from './city-drive-car';
-import { createRoamSpace, ROAM_SPAWN, type CitySolid } from './city-roam-physics';
+import { createDriveCar, DRIVER_EYE } from './city-drive-car';
+import { createRoamSpace, ROAM_SPAWN, type CitySolid, type RoamFloor } from './city-roam-physics';
+import { loadPeople } from './city-kenney';
 
 export type RoamAction = 'forward' | 'back' | 'left' | 'right' | 'boost' | 'brake';
 export type RoamCommand = 'vehicle' | 'visit' | 'reset' | 'camera';
-export type RoamStatus = { vehicle: 'car' | 'avatar'; speed: number; x: number; z: number; carX: number; carZ: number; heading: number; near: CityLocationId | null; canEnter: boolean; blocked: boolean };
+export type RoamStatus = { vehicle: 'car' | 'avatar'; speed: number; x: number; z: number; carX: number; carZ: number; heading: number; near: CityLocationId | null; canEnter: boolean; blocked: boolean; contact?: string };
 const BINDINGS: Record<string, RoamAction> = { KeyW: 'forward', ArrowUp: 'forward', KeyS: 'back', ArrowDown: 'back', KeyA: 'left', ArrowLeft: 'left', KeyD: 'right', ArrowRight: 'right', ShiftLeft: 'boost', ShiftRight: 'boost', Space: 'brake' };
 const COMMANDS: Record<string, RoamCommand> = { KeyE: 'vehicle', KeyF: 'visit', KeyR: 'reset', KeyC: 'camera' };
 const wrap = (angle: number) => Math.atan2(Math.sin(angle), Math.cos(angle));
 
 /** One controller owns player input and the chase camera only while free roam is active. */
-export function createCityRoam(scene: THREE.Scene, camera: THREE.PerspectiveCamera, host: HTMLElement, options: { onStatus: (status: RoamStatus) => void; onVisit: (id: CityLocationId) => void; onExit: () => void }) {
+export function createCityRoam(scene: THREE.Scene, camera: THREE.PerspectiveCamera, host: HTMLElement, options: { onStatus: (status: RoamStatus) => void; onVisit: (id: CityLocationId) => void; onExit: () => void; onContact?: (contact: CityContact) => void }) {
   const canvas = host.querySelector('canvas')!;
   const car = createDriveCar(); car.group.name = 'free-roam-car'; scene.add(car.group, car.trail); car.setLights(1);
   const avatar = new THREE.Group(); avatar.name = 'free-roam-avatar'; scene.add(avatar);
-  const skin = new THREE.MeshStandardMaterial({ color: '#b87e60', roughness: .82 });
-  const jacket = new THREE.MeshStandardMaterial({ color: '#21394f', roughness: .7, metalness: .15 });
-  const pants = new THREE.MeshStandardMaterial({ color: P.building, roughness: .85 });
-  const trim = new THREE.MeshStandardMaterial({ color: P.cyan, emissive: P.cyan, emissiveIntensity: .6, roughness: .4 });
-  const dark = new THREE.MeshStandardMaterial({ color: '#081421', roughness: .5 });
   const add = (geometry: THREE.BufferGeometry, material: THREE.Material, x: number, y: number, z: number, parent: THREE.Object3D = avatar) => {
-    const mesh = new THREE.Mesh(geometry, material); mesh.position.set(x, y, z); mesh.castShadow = true; parent.add(mesh); return mesh;
+    const mesh = new THREE.Mesh(geometry, material); mesh.position.set(x, y, z); parent.add(mesh); return mesh;
   };
-  add(new THREE.CapsuleGeometry(.28, .46, 4, 10), jacket, 0, 1.28, 0);
-  add(new THREE.SphereGeometry(.23, 12, 10), skin, 0, 1.94, 0).scale.y = 1.12;
-  add(new THREE.SphereGeometry(.242, 12, 8, 0, Math.PI * 2, 0, Math.PI * .55), dark, 0, 2.01, 0);
-  add(new THREE.BoxGeometry(.38, .085, .09), trim, 0, 1.97, -.21);
-  add(new THREE.BoxGeometry(.34, .45, .18), jacket, 0, 1.28, .32);
-  add(new THREE.BoxGeometry(.24, .045, .04), trim, 0, 1.39, .43);
-  add(new THREE.BoxGeometry(.4, .06, .05), trim, 0, 1.48, -.26);
-  const limbs: THREE.Group[] = [];
-  for (const side of [-1, 1]) {
-    const leg = new THREE.Group(); leg.position.set(side * .15, .91, 0); avatar.add(leg);
-    add(new THREE.CapsuleGeometry(.105, .57, 3, 8), pants, 0, -.34, 0, leg);
-    add(new THREE.BoxGeometry(.23, .15, .38), dark, 0, -.76, -.07, leg);
-    add(new THREE.BoxGeometry(.235, .035, .38), trim, 0, -.83, -.07, leg);
-    const arm = new THREE.Group(); arm.position.set(side * .34, 1.57, 0); avatar.add(arm);
-    add(new THREE.CapsuleGeometry(.09, .33, 3, 8), jacket, 0, -.23, 0, arm);
-    add(new THREE.SphereGeometry(.085, 8, 6), skin, 0, -.51, 0, arm); limbs.push(leg, arm);
-  }
+  // On foot the visitor is a Kenney Mini Character that idles, walks and sprints with their speed.
+  let rig: { mixer: THREE.AnimationMixer; play(clip: 'idle' | 'walk' | 'sprint', fade?: number): void } | null = null;
+  const avatarReady = loadPeople().then(kit => {
+    const character = kit.character('female-c'); character.root.scale.setScalar(1.95 * .75 / kit.height); // matches the city's people (city-life SIZE)
+    character.root.traverse(object => { if (object instanceof THREE.Mesh) { object.castShadow = true; object.frustumCulled = false; } });
+    avatar.add(character.root); character.play('idle', 0); rig = character;
+  }).catch(() => undefined);
   const ring = add(new THREE.RingGeometry(.42, .47, 32), new THREE.MeshBasicMaterial({ color: P.cyan, transparent: true, opacity: .7, side: THREE.DoubleSide, depthWrite: false }), 0, .015, 0);
   ring.rotation.x = -Math.PI / 2;
   const position = new THREE.Vector3(ROAM_SPAWN.x, .16, ROAM_SPAWN.z), parked = position.clone();
@@ -48,23 +35,42 @@ export function createCityRoam(scene: THREE.Scene, camera: THREE.PerspectiveCame
   const shell = host.closest<HTMLElement>('[data-scene-status]')!;
   let space = createRoamSpace([]), active = false, suspended = false, driving = true, speed = 0, heading = 0, parkedHeading = 0;
   let distance = 0, phase = 0, yaw = 0, pitch = .38, lastLook = 0, reportAt = 0, blocked = false, near: CityLocationId | null = null;
-  let drag: { id: number; x: number; y: number } | null = null, started = false, closeCamera = false;
+  let drag: { id: number; x: number; y: number } | null = null, started = false, cameraMode = 0;
+  const contactTimes = new Map<string, number>();
+  let dynamicBodies: readonly CityBody[] = [];
+  let contactMessage = '', contactUntil = 0, simulationTime = 0, impulse = 0, recover = 0, contactCount = 0;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function receiveContact(contact: CityContact) {
+    const time = simulationTime;
+    if (suspended || contactTimes.has(contact.id) || contact.speed < .15) return;
+    const other = dynamicBodies.find(body => body.id === contact.id);
+    // A bump against the parked coupe should not shake a visitor walking elsewhere.
+    if (other && bodySeparation(playerBody(position.x, position.z, heading, driving, position.y), other).gap > .5) return;
+    contactTimes.set(contact.id, time); contactCount++;
+    const strength = Math.min(1, contact.speed / 16); impulse = Math.max(impulse, .16 + strength * .65); recover = .16;
+    contactMessage = contact.kind === 'person' ? driving ? 'Give people space.' : 'Excuse me! Make a little room.' : contact.kind === 'vehicle' ? 'Vehicle contact. Check your surroundings.' : 'Easy. Turn or reverse to get clear.';
+    contactUntil = time + 1.5;
+    if (driving) speed = 0;
+    host.dataset.roamContacts = String(contactCount); host.dataset.roamContactKind = contact.kind;
+    options.onContact?.(contact); report();
+  }
   const keys = new Set<string>(), touch = new Set<RoamAction>();
   const clearInput = () => { keys.clear(); touch.clear(); drag = null; speed = 0; };
   const held = (action: RoamAction) => touch.has(action) || [...keys].some(code => BINDINGS[code] === action);
   const canEnter = () => !driving && Math.hypot(position.x - parked.x, position.z - parked.z) < 4.4;
   function report() {
-    const status: RoamStatus = { vehicle: driving ? 'car' : 'avatar', speed: Math.round(Math.abs(speed) * 3.6), x: position.x, z: position.z, carX: parked.x, carZ: parked.z, heading, near, canEnter: canEnter(), blocked };
+    const status: RoamStatus = { vehicle: driving ? 'car' : 'avatar', speed: Math.round(Math.abs(speed) * 3.6), x: position.x, z: position.z, carX: parked.x, carZ: parked.z, heading, near, canEnter: canEnter(), blocked, contact: simulationTime < contactUntil ? contactMessage : undefined };
     options.onStatus(status);
     host.dataset.roamVehicle = status.vehicle; host.dataset.roamPosition = `${position.x.toFixed(2)},${position.z.toFixed(2)}`;
     host.dataset.roamSpeed = String(status.speed); host.dataset.roamBlocked = String(blocked); host.dataset.roamNear = near || '';
   }
-  function reset() { clearInput(); parked.set(ROAM_SPAWN.x, .16, ROAM_SPAWN.z); position.copy(parked); if (!driving) position.x -= 2.8; heading = ROAM_SPAWN.heading; parkedHeading = heading; yaw = heading; pitch = .38; speed = 0; blocked = false; car.group.position.copy(parked); car.group.rotation.y = heading; car.resetTrail(); report(); }
+  function reset() { contactTimes.clear(); contactUntil = 0; impulse = 0; recover = 0; clearInput(); parked.set(ROAM_SPAWN.x, .16, ROAM_SPAWN.z); position.copy(parked); if (!driving) position.x -= 2.8; heading = ROAM_SPAWN.heading; parkedHeading = heading; yaw = heading; pitch = .38; speed = 0; blocked = false; car.group.position.copy(parked); car.group.rotation.y = heading; car.resetTrail(); report(); }
   function command(command: RoamCommand) {
     if (!active || suspended) return;
     if (command === 'reset') { reset(); return; }
-    if (command === 'camera') { closeCamera = !closeCamera; return; }
+    if (command === 'camera') { cameraMode = (cameraMode + 1) % (driving ? 3 : 2); return; }
     if (command === 'visit') { if (near) { clearInput(); options.onVisit(near); } return; }
+    cameraMode = 0;
     if (driving) {
       speed = 0;
       const candidates = [[-2.8, 0], [2.8, 0], [0, 3.8], [0, -3.8]];
@@ -72,6 +78,8 @@ export function createCityRoam(scene: THREE.Scene, camera: THREE.PerspectiveCame
       if (!exit) { blocked = true; report(); return; }
       parked.copy(position); parkedHeading = heading; position.set(exit.x, .16, exit.z); driving = false;
     } else if (canEnter()) { position.copy(parked); heading = parkedHeading; driving = true; }
+    // Restore the complete exterior when parking; the avatar branch does not animate the car.
+    car.setRoofOpen(false); car.update(distance, 0, 0, 0, 0, 0); car.driver.visible = driving;
     speed = 0; report();
   }
   function keyDown(event: KeyboardEvent) {
@@ -96,12 +104,23 @@ export function createCityRoam(scene: THREE.Scene, camera: THREE.PerspectiveCame
   canvas.addEventListener('pointerdown', pointerDown); canvas.addEventListener('pointermove', pointerMove); canvas.addEventListener('pointerup', pointerUp); canvas.addEventListener('pointercancel', pointerUp); canvas.addEventListener('lostpointercapture', lostPointer);
   car.setVisible(false); avatar.visible = false;
   return {
+    ready: Promise.all([car.ready, avatarReady]),
     warmup() {
       const saved: { object: THREE.Object3D; visible: boolean; culled: boolean }[] = [];
       for (const root of [car.group, car.trail, avatar]) root.traverse(object => { saved.push({ object, visible: object.visible, culled: object.frustumCulled }); object.visible = true; object.frustumCulled = false; });
       return () => saved.forEach(({ object, visible, culled }) => { object.visible = visible; object.frustumCulled = culled; });
     },
-    setSolids(solids: CitySolid[]) { space = createRoamSpace(solids); host.dataset.roamSolids = String(space.count); },
+    setBodies(bodies: readonly CityBody[]) { dynamicBodies = bodies; space.setBodies(bodies); },
+    receiveContact,
+    bodies() {
+      if (!active) return [];
+      const coupe = playerBody(parked.x, parked.z, parkedHeading, true);
+      if (driving) { coupe.vx = -Math.sin(heading) * speed; coupe.vz = -Math.cos(heading) * speed; return [coupe]; }
+      const visitor = playerBody(position.x, position.z, heading, false, position.y);
+      visitor.vx = -Math.sin(heading) * speed; visitor.vz = -Math.cos(heading) * speed;
+      return [coupe, visitor];
+    },
+    setSolids(solids: CitySolid[], floors: readonly RoamFloor[] = []) { space = createRoamSpace(solids, floors); host.dataset.roamSolids = String(space.count); },
     setActive(value: boolean, paused: boolean) {
       if (active !== value || suspended !== paused) clearInput();
       if (value && !active) { if (!started) { reset(); started = true; } yaw = heading; camera.fov = 58; camera.updateProjectionMatrix(); canvas.focus({ preventScroll: true }); }
@@ -111,6 +130,7 @@ export function createCityRoam(scene: THREE.Scene, camera: THREE.PerspectiveCame
     input(action: RoamAction, pressed: boolean) { if (!active || suspended) return; if (pressed) touch.add(action); else touch.delete(action); },
     command,
     position: () => ({ x: position.x, z: position.z }),
+    vehiclePosition: () => ({ x: parked.x, z: parked.z }),
     /** Place the visit affordance over its destination, or on the matching screen edge. */
     projectWaypoint(width: number, height: number) {
       const marker = shell.querySelector<HTMLElement>('[data-roam-waypoint]');
@@ -125,7 +145,8 @@ export function createCityRoam(scene: THREE.Scene, camera: THREE.PerspectiveCame
       const mobile = width <= 700, touch = !!shell.querySelector('[data-roam-touch-controls]');
       const left = halfW, right = Math.max(left, width - halfW);
       const top = Math.min(height * .4, 108 + halfH);
-      const bottom = Math.max(top, height - (height < 540 ? 120 : mobile && touch ? 285 : 165) - halfH);
+      // Seated HUD markers stay in the windshield, clear of the physical GPS screen below.
+      const bottom = Math.max(top, (driving && cameraMode === 2 ? height * .42 : height - (height < 540 ? 120 : mobile && touch ? 285 : 165)) - halfH);
       let x = (waypoint.x + 1) * width / 2, y = (1 - waypoint.y) * height / 2;
       let dx = x - width / 2, dy = y - height / 2;
       const behind = waypointView.z >= -.1;
@@ -146,22 +167,41 @@ export function createCityRoam(scene: THREE.Scene, camera: THREE.PerspectiveCame
     update(dt: number, time: number) {
       if (!active) return;
       dt = Math.min(dt, .05);
+      // Manual movement and feedback keep their clock when ambient motion is reduced.
+      if (!suspended) simulationTime += dt;
+      if (!suspended) {
+        const body = playerBody(position.x, position.z, heading, driving, position.y);
+        for (const [id] of contactTimes) {
+          const other = dynamicBodies.find(body => body.id === id);
+          if (id === 'world' ? !blocked : !other || bodySeparation(body, other).gap > .3) contactTimes.delete(id);
+        }
+      }
+      if (!suspended) { impulse = Math.max(0, impulse - dt * 2.8); recover = Math.max(0, recover - dt); }
       let forward = Number(held('forward')) - Number(held('back')), steer = Number(held('left')) - Number(held('right'));
       const pad = navigator.getGamepads?.()[0];
       if (pad && !suspended) { const dead = (v: number) => Math.abs(v) < .18 ? 0 : v; forward ||= -dead(pad.axes[1] || 0); steer ||= -dead(pad.axes[0] || 0); }
       if (suspended) { forward = 0; steer = 0; speed = 0; }
+      const cockpitView = driving && cameraMode === 2;
+      host.dataset.roamCamera = cockpitView ? 'cockpit' : cameraMode === 1 ? 'near' : 'chase';
       if (driving) {
-        const goal = forward * (forward < 0 ? 6 : held('boost') ? 20 : 14);
+        const goal = recover > 0 ? 0 : forward * (forward < 0 ? 6 : held('boost') ? 20 : 14);
         const rate = held('brake') ? 12 : forward ? 2 : 3;
         speed += ((held('brake') ? 0 : goal) - speed) * (1 - Math.exp(-rate * dt));
         if (Math.abs(speed) < .035) speed = 0;
         const nextHeading = heading + steer * THREE.MathUtils.clamp(speed / 7, -1.1, 1.1) * dt;
         if (space.carClear(position.x, position.z, nextHeading)) heading = nextHeading;
         blocked = space.move(position, -Math.sin(heading) * speed * dt, -Math.cos(heading) * speed * dt, heading, true);
-        if (blocked) speed = 0;
+        if (blocked) {
+          const hit = space.contact();
+          const impact = hit ? Math.max(0, speed * (Math.sin(heading) * hit.nx + Math.cos(heading) * hit.nz)) : Math.abs(speed);
+          receiveContact(hit ? { ...hit, speed: Math.max(impact, Math.abs(speed)) } : { id: 'world', kind: 'world', x: position.x - Math.sin(heading) * 2.2, z: position.z - Math.cos(heading) * 2.2, nx: Math.sin(heading), nz: Math.cos(heading), speed: impact });
+          speed = 0;
+        }
         distance += speed * dt; parked.copy(position); parkedHeading = heading;
         car.group.position.copy(position); car.group.rotation.y = heading;
-        if (!suspended) car.update(distance, steer * .4, 0, Math.abs(speed), dt, time);
+        car.setRoofOpen(cockpitView);
+        if (!suspended) car.update(distance, steer * .4, cockpitView ? 1 : 0, Math.abs(speed), dt, time);
+        if (cockpitView) car.paintNavigation({ x: position.x, z: position.z, heading, speed, destination: near ? CITY_LOCATIONS.find(place => place.id === near)!.name : 'Explore StatOz City' });
         if (!drag && performance.now() - lastLook > 1800 && Math.abs(speed) > .5) yaw += wrap(heading - yaw) * (1 - Math.exp(-dt * 2.2));
       } else {
         const norm = Math.max(1, Math.hypot(forward, steer)), pace = held('boost') ? 7 : 3.5;
@@ -169,34 +209,62 @@ export function createCityRoam(scene: THREE.Scene, camera: THREE.PerspectiveCame
         const dz = (-Math.cos(yaw) * forward + Math.sin(yaw) * steer) / norm * pace * dt;
         const beforeX = position.x, beforeZ = position.z;
         blocked = space.move(position, dx, dz, heading, false);
+        const hit = space.contact();
+        if (hit && blocked) receiveContact({ ...hit, speed: Math.hypot(dx, dz) / Math.max(dt, .001) });
         const px = position.x - parked.x, pz = position.z - parked.z;
         // The parked coupe is still solid when the visitor steps out.
         if (Math.abs(px * Math.cos(parkedHeading) - pz * Math.sin(parkedHeading)) < 1.35 && Math.abs(px * Math.sin(parkedHeading) + pz * Math.cos(parkedHeading)) < 2.7) { position.x = beforeX; position.z = beforeZ; blocked = true; }
         speed = dt ? Math.hypot(position.x - beforeX, position.z - beforeZ) / dt : 0;
         if (speed > .1) heading += wrap(Math.atan2(-dx, -dz) - heading) * (1 - Math.exp(-dt * 14));
         if (!suspended) phase += speed * dt * 2.4;
+        // Stand on courts, pitches and the circuit rather than sinking into them.
+        position.y = Math.max(.16, space.floorAt(position.x, position.z) + .04);
         avatar.position.copy(position); avatar.rotation.y = heading;
-        limbs.forEach((limb, i) => { limb.rotation.x = Math.sin(phase + (i < 2 ? 0 : Math.PI)) * (i % 2 ? -.45 : .55) * Math.min(1, speed); });
-        avatar.position.y += Math.abs(Math.sin(phase)) * .035 * Math.min(1, speed);
+        rig?.play(speed > 4.5 ? 'sprint' : speed > .35 ? 'walk' : 'idle');
+        if (!suspended) rig?.mixer.update(dt);
+      }
+      if (!reduced) {
+        car.bodywork.rotation.z = Math.sin(time * 29) * impulse * .025;
+        avatar.rotation.z = Math.sin(time * 17) * impulse * .035;
       }
       avatar.visible = !driving;
-      car.driver.visible = driving;
+      car.driver.visible = driving && !cockpitView;
       // Pull the follow camera in before it crosses a building or a stand.
-      target.set(position.x, driving ? 1.5 : 1.6, position.z);
-      const boom = closeCamera ? driving ? 7 : 4.5 : driving ? 12 : 7;
+      target.set(position.x, driving ? 1.5 : 1.25, position.z);
+      const boom = cameraMode === 1 ? driving ? 7 : 4.5 : driving ? 12 : 7;
       desired.set(target.x + Math.sin(yaw) * Math.cos(pitch) * boom, target.y + Math.sin(pitch) * boom + (driving ? 1 : .4), target.z + Math.cos(yaw) * Math.cos(pitch) * boom);
-      desired.sub(target).multiplyScalar(space.cameraDistance(target, desired)).add(target);
+      // Cast in world coordinates before turning the desired position into a boom vector.
+      // Mutating it first tests an unrelated diagonal across the city and pulls the camera
+      // into the rear bodywork, even when the actual road behind the car is clear.
+      const boomFraction = space.cameraDistance(target, desired);
+      desired.sub(target).multiplyScalar(boomFraction).add(target);
       // Follow the desired boom directly after collision; smoothing a blocked pose can cross walls.
       const blend = 1 - Math.exp(-dt * 9);
       camera.position.lerp(desired, blend);
       const safe = space.cameraDistance(target, camera.position); if (safe < 1) camera.position.sub(target).multiplyScalar(safe).add(target);
       look.copy(target); if (driving) { look.x -= Math.sin(heading) * Math.abs(speed) * .12; look.z -= Math.cos(heading) * Math.abs(speed) * .12; }
       camera.lookAt(look);
+      if (cockpitView) {
+        const portrait = host.clientWidth <= 700;
+        desired.copy(DRIVER_EYE); if (portrait) { desired.x -= .23; desired.y += .02; desired.z += .04; }
+        look.set((portrait ? -.5 : DRIVER_EYE.x) - Math.sin(THREE.MathUtils.clamp(wrap(yaw - heading), -.7, .7)) * 5, desired.y - (portrait ? 2.25 : 1) - (pitch - .38) * 2, -14);
+        car.group.updateMatrixWorld(true); car.group.localToWorld(desired); car.group.localToWorld(look);
+        camera.position.copy(desired); camera.lookAt(look);
+      }
+      if (!reduced && !suspended && impulse > .001) {
+        // Shake the rendered camera only; collision and steering stay stable.
+        camera.position.x += Math.sin(time * 61) * impulse * .07;
+        camera.position.y += Math.sin(time * 47) * impulse * .045;
+        camera.lookAt(look);
+      }
+      const fov = cockpitView ? host.clientWidth <= 700 ? 86 : 70 : 58;
+      if (camera.fov !== fov) { camera.fov = fov; camera.updateProjectionMatrix(); }
       near = null; let best = Infinity;
       for (const place of CITY_LOCATIONS) { const distance = Math.hypot(position.x - place.position[0], position.z - place.position[2]); const reach = place.category === 'sport' ? 36 : 16; if (distance < reach && distance / reach < best) { near = place.id; best = distance / reach; } }
       if (performance.now() > reportAt) { report(); reportAt = performance.now() + 120; }
     },
     dispose() {
+      car.cancelLoad();
       clearInput(); window.removeEventListener('keydown', keyDown); window.removeEventListener('keyup', keyUp); window.removeEventListener('blur', blur); document.removeEventListener('visibilitychange', visibility);
       canvas.removeEventListener('pointerdown', pointerDown); canvas.removeEventListener('pointermove', pointerMove); canvas.removeEventListener('pointerup', pointerUp); canvas.removeEventListener('pointercancel', pointerUp); canvas.removeEventListener('lostpointercapture', lostPointer);
       const geometries = new Set<THREE.BufferGeometry>(), materials = new Set<THREE.Material>(), textures = new Set<THREE.Texture>();

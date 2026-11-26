@@ -5,7 +5,7 @@ test('all refinement assets are local, intact and have source provenance', async
   const response = await request.get('/assets/city/refinement/manifest.json');
   expect(response.ok()).toBe(true);
   const manifest = await response.json();
-  expect(manifest.assets).toHaveLength(9);
+  expect(manifest.assets).toHaveLength(5);
   for (const asset of manifest.assets) {
     expect(asset.license).toBeTruthy();
     expect(asset.sourceFile || asset.source).toBeTruthy();
@@ -19,12 +19,11 @@ test('all refinement assets are local, intact and have source provenance', async
 // Read actual world state so this checks animation and its pause behavior, rather than a UI label.
 const snapshot = (page: Page) => page.evaluate(() => {
   const debug = (window as any).__cityDebug, scene = debug.scene;
-  const actor = scene.getObjectByProperty('name', 'statoz-city-life').children.find((item: any) => item.name.startsWith('game-athlete-'));
   const tram = scene.getObjectByName('city-night-tram'), drone = scene.getObjectByName('city-courier-drone');
   const fountain = scene.getObjectByName('park-fountain').children[0];
   const fan = scene.getObjectByName('rooftop-condenser-fan');
   const wind = scene.getObjectByName('city-broadleaf-trees').material;
-  return { tram: tram.position.x, drone: drone.position.toArray(), fan: fan.rotation.y, water: Array.from(fountain.geometry.attributes.position.array.slice(0, 6)), actor: actor.getObjectByName('LeftArm').rotation.x, trees: !!wind, canvasCount: document.querySelectorAll('canvas').length };
+  return { tram: tram.position.x, drone: drone.position.toArray(), fan: fan.rotation.y, water: Array.from(fountain.geometry.attributes.position.array.slice(0, 6)), actor: scene.getObjectByName('city-people').userData.probe, trees: !!wind, canvasCount: document.querySelectorAll('canvas').length };
 });
 
 for (const width of [1440, 390]) test(`city dynamics and game characters pause together at ${width}`, async ({ page }) => {

@@ -34,6 +34,9 @@ function road(points: CityPoint[]) {
   curve.add(new THREE.LineCurve3(last, vertices.at(-1)!)); return curve;
 }
 const routes = routePoints.map(road), lengths = routes.map(path => path.getLength());
+/** The coupe's exact paths, so street traffic can keep its manoeuvres clear of them. */
+export const DRIVE_ROUTES: readonly THREE.CurvePath<THREE.Vector3>[] = routes;
+const navigationRoutes = routes.map(path => path.getSpacedPoints(150));
 const offsets = lengths.map((_, i) => lengths.slice(0, i).reduce((a, b) => a + b, 0));
 const TOTAL = lengths.reduce((a, b) => a + b, 0);
 
@@ -90,7 +93,7 @@ export function createCityDrive(scene: THREE.Scene, camera: THREE.PerspectiveCam
 
   const missionPoses: Pose[] = JOURNEY_MISSIONS.map(chapter => ({ position: V(chapter.camera), target: V(chapter.target), fov: 50 }));
   const heroChapter = JOURNEY_CHAPTERS[0];
-  let width = 1440, height = 950, clock = 0, lastDistance = 0, speed = 0, steerSmooth = 0, lastPaint = 0;
+  let width = 1440, height = 950, clock = 0, lastDistance = 0, speed = 0, steerSmooth = 0;
   let view = { x: 0, y: 0 };
   const state = { gateWake: 0, colorBloom: 0, carLights: 0, inside: 0, speed: 0, distance: 0, mode: 'hero', heroWeight: 1 };
   const markerDummy = new THREE.Object3D(), markerSide = new THREE.Vector3(), up = new THREE.Vector3(0, 1, 0);
@@ -103,17 +106,17 @@ export function createCityDrive(scene: THREE.Scene, camera: THREE.PerspectiveCam
   function cockpit(time: number, speedFactor: number, steer: number): Pose {
     const bob = Math.sin(time * 8.3) * .004 * speedFactor, lift = Math.abs(Math.sin(time * 6.1)) * .006 * speedFactor;
     // Portrait screens sit the eye a little higher and further back, so the road shows above the wheel.
-    const portrait = width < 701, eye = DRIVER_EYE.clone().add(new THREE.Vector3(0, portrait ? .1 : 0, portrait ? .28 : 0));
-    const look = new THREE.Vector3(DRIVER_EYE.x + Math.sin(steer) * -9, eye.y - (portrait ? .02 : .1), -14);
-    return { position: local(eye.x + bob, eye.y + lift, eye.z), target: car.group.localToWorld(look), fov: THREE.MathUtils.lerp(portrait ? 62 : 60, portrait ? 68 : 68, speedFactor) };
+    const portrait = width < 701, eye = DRIVER_EYE.clone().add(new THREE.Vector3(portrait ? -.23 : 0, portrait ? .02 : 0, portrait ? .04 : 0));
+    const look = new THREE.Vector3((portrait ? -.5 : DRIVER_EYE.x) + Math.sin(steer) * -9, eye.y - (portrait ? 2.25 : 1), -14);
+    return { position: local(eye.x + bob, eye.y + lift, eye.z), target: car.group.localToWorld(look), fov: THREE.MathUtils.lerp(portrait ? 86 : 70, portrait ? 90 : 74, speedFactor) };
   }
   /** The orbit from the chase position, around the driver's door, into the driver's seat. */
   function orbitIn(t: number): Pose {
     const e = smoother(0, 1, t);
-    const start = new THREE.Vector3(width < 701 ? 3.6 : 2.8, width < 701 ? 2.4 : 1.9, width < 701 ? 8.4 : 6.6), end = DRIVER_EYE.clone().add(new THREE.Vector3(0, width < 701 ? .1 : 0, width < 701 ? .28 : 0));
+    const start = new THREE.Vector3(width < 701 ? 3.6 : 2.8, width < 701 ? 2.4 : 1.9, width < 701 ? 8.4 : 6.6), end = DRIVER_EYE.clone().add(new THREE.Vector3(width < 701 ? -.23 : 0, width < 701 ? .02 : 0, width < 701 ? .04 : 0));
     const position = bezier(start, new THREE.Vector3(4.4, 1.7, 2.2), new THREE.Vector3(1.6, 1.25, .4), end, e);
-    const target = bezier(new THREE.Vector3(0, .8, -1.6), new THREE.Vector3(0, .9, -4), new THREE.Vector3(.3, 1, -9), new THREE.Vector3(DRIVER_EYE.x, end.y - (width < 701 ? .02 : .1), -14), e);
-    return { position: car.group.localToWorld(position), target: car.group.localToWorld(target), fov: THREE.MathUtils.lerp(width < 701 ? 58 : 50, width < 701 ? 62 : 60, e) };
+    const target = bezier(new THREE.Vector3(0, .8, -1.6), new THREE.Vector3(0, .9, -4), new THREE.Vector3(.3, 1, -9), new THREE.Vector3(width < 701 ? -.5 : DRIVER_EYE.x, end.y - (width < 701 ? 2.25 : 1), -14), e);
+    return { position: car.group.localToWorld(position), target: car.group.localToWorld(target), fov: THREE.MathUtils.lerp(width < 701 ? 58 : 50, width < 701 ? 86 : 70, e) };
   }
   function placeCar(routeIndex: number, travel: number) {
     const path = routes[routeIndex], at = THREE.MathUtils.clamp(travel, 0, 1);
@@ -175,7 +178,7 @@ export function createCityDrive(scene: THREE.Scene, camera: THREE.PerspectiveCam
     const speedFactor = Math.min(1, speed / 18);
     car.setVisible(true);
     car.setLights(smooth(.55, .95, p));
-    car.setRoofOpen(mobile && inside > .5);
+    car.setRoofOpen(inside > .3);
     car.update(distance, steerSmooth, inside, speed, dt, time);
     // Speed streaks only belong to the cockpit view while the car is really moving.
     streaks.update(inside * smooth(.12, .5, speedFactor), distance);
@@ -216,41 +219,26 @@ export function createCityDrive(scene: THREE.Scene, camera: THREE.PerspectiveCam
     host.dataset.cameraMode = mode; host.dataset.carPosition = car.group.position.toArray().map(n => n.toFixed(2)).join(',');
     host.dataset.driveDistance = distance.toFixed(3); host.dataset.speed = speed.toFixed(2);
 
-    paintHud(time, speedFactor, routeIndex, travel, p);
+    paintHud(routeIndex, travel);
     if (active) {
       camera.position.copy(pose.position); camera.fov = pose.fov; camera.updateProjectionMatrix(); camera.lookAt(pose.target);
     }
     return pose;
   }
 
-  // The gauge cluster and centre screen are drawn on canvas, a few times a second, only when seen.
-  function paintHud(time: number, speedFactor: number, routeIndex: number, travel: number, p: number) {
-    if (state.inside < .05 || time - lastPaint < .12) return; lastPaint = time;
-    const kmh = Math.round(speed * 3.6), next = STOP_NAMES[Math.min(3, routeIndex)];
-    const c = car.clusterCanvas.getContext('2d')!; c.clearRect(0, 0, 512, 180);
-    c.fillStyle = '#04101a'; c.fillRect(0, 0, 512, 180);
-    c.strokeStyle = '#123548'; c.lineWidth = 10; c.beginPath(); c.arc(256, 210, 150, Math.PI * 1.15, Math.PI * 1.85); c.stroke();
-    c.strokeStyle = P.cyan; c.beginPath(); c.arc(256, 210, 150, Math.PI * 1.15, Math.PI * (1.15 + .7 * speedFactor)); c.stroke();
-    c.fillStyle = '#eafcff'; c.textAlign = 'center'; c.font = '700 74px sans-serif'; c.fillText(String(kmh), 256, 150);
-    c.fillStyle = '#6fbfd6'; c.font = '600 18px sans-serif'; c.fillText('KM/H', 256, 172);
-    c.textAlign = 'left'; c.fillStyle = P.cyan; c.font = '700 24px sans-serif'; c.fillText('D', 30, 60);
-    c.textAlign = 'right'; c.fillStyle = '#9fc6d6'; c.font = '600 16px sans-serif'; c.fillText('NEXT', 482, 44); c.fillStyle = '#eafcff'; c.font = '700 20px sans-serif'; c.fillText(next.toUpperCase(), 482, 70);
-    car.cluster.needsUpdate = true;
-    const s = car.screenCanvas.getContext('2d')!; s.fillStyle = '#030c14'; s.fillRect(0, 0, 512, 300);
-    const map = (point: THREE.Vector3) => [256 + point.x * 1.55, 150 + (point.z - 15) * 1.15] as const;
-    s.lineCap = 'round'; s.lineJoin = 'round';
-    routes.forEach((path, i) => { s.strokeStyle = i === routeIndex ? P.cyan : '#1d4a5e'; s.lineWidth = i === routeIndex ? 6 : 4; s.beginPath(); path.getSpacedPoints(40).forEach((point, n) => { const [x, y] = map(point); n ? s.lineTo(x, y) : s.moveTo(x, y); }); s.stroke(); });
-    const [cx, cy] = map(car.group.position); s.fillStyle = '#ffffff'; s.beginPath(); s.arc(cx, cy, 8, 0, Math.PI * 2); s.fill();
-    s.fillStyle = '#9fc6d6'; s.font = '600 18px sans-serif'; s.fillText('ROUTE ' + (Math.min(3, routeIndex) + 1) + ' / 4', 18, 30);
-    s.fillStyle = '#eafcff'; s.font = '700 22px sans-serif'; s.fillText(next, 18, 284);
-    car.screen.needsUpdate = true;
-    void travel; void p;
+  // One heading-up city navigation texture follows the same path, pose and progress as the car.
+  function paintHud(routeIndex: number, travel: number) {
+    if (state.inside < .05) return;
+    car.paintNavigation({ x: car.group.position.x, z: car.group.position.z, heading: car.group.rotation.y, speed,
+      destination: STOP_NAMES[routeIndex], remaining: lengths[routeIndex] * (1 - travel),
+      route: navigationRoutes[routeIndex], progress: travel });
   }
 
   return {
-    sample, resize, state, view: () => view,
+    sample, resize, state, ready: car.ready, view: () => view,
     carState: () => ({ position: car.group.position.clone(), heading: car.group.rotation.y, lane: stops }),
     dispose() {
+      car.cancelLoad();
       unobserveChoice();
       const geometries = new Set<THREE.BufferGeometry>(), materials = new Set<THREE.Material>(), textures = new Set<THREE.Texture>();
       for (const root of [car.group, car.trail, streaks.mesh, sparks.points, signals]) {

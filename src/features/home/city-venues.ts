@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { CITY_PALETTE as P, locationById } from './city-config';
 import type { CityKit } from './city-kit';
+import type { RoamFloor } from './city-roam-physics';
 
 const center = (id: 'basketball' | 'cricket' | 'football' | 'racing') => { const [x, , z] = locationById(id)!.position; return { x, z }; };
 const PITCH_LINE = '#d5f4ee';
@@ -51,7 +52,10 @@ export function buildVenues(kit: CityKit) {
     const field = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ map, roughness: .86, metalness: .02, emissiveMap: map, emissive: '#b4d8ee', emissiveIntensity: .34 }));
     field.rotation.x = -Math.PI / 2; field.position.set(x, .4, z); kit.source.add(field);
   }
-  function apron(x: number, z: number, w: number, d: number, accent: string) {
+  /** Raised playing surfaces: people walk on them at their height; the free-roam car may not drive onto them. */
+  const floors: RoamFloor[] = [];
+  function apron(x: number, z: number, w: number, d: number, accent: string, surface = .4) {
+    floors.push({ x, z, halfX: w / 2, halfZ: d / 2, round: false, y: surface });
     box(w, .25, d, x, .17, z, material('#243245'));
     for (const side of [-1, 1]) { box(w, .12, .12, x, .36, z + side * d / 2, material(accent, 1)); box(.12, .12, d, x + side * w / 2, .36, z, material(accent, 1)); }
   }
@@ -92,10 +96,12 @@ export function buildVenues(kit: CityKit) {
     const at = (degrees: number, radius: number) => { const a = degrees * Math.PI / 180; return { a, x: x + Math.cos(a) * radius, z: z + Math.sin(a) * radius, heading: Math.atan2(-Math.cos(a), -Math.sin(a)) }; };
     cylinder(26.3, .25, x, .17, z, material('#243245'), 72); kit.ring(x, z, 26.2, accent, .14, .31, 1);
     kit.claim('oval rim', x - 26.3, z - 26.3, x + 26.3, z + 26.3);
+    floors.push({ x, z, halfX: 26.3, halfZ: 26.3, round: true, y: .4 });
     surface('cricket', new THREE.CircleGeometry(25, 96), x, z); kit.ring(x, z, 24.55, '#f4f8ff', .1, .43, .5);
     for (const end of [-1, 1]) for (let i = -1; i <= 1; i++) box(.12, 1.4, .12, x + i * .38, 1.1, z + end * 8.5, material('#dfcfac'));
     for (const degrees of [157.5, 180, 202.5, 247.5, 270, 292.5]) { const seat = at(degrees, 28.2); kit.grandstand({ x: seat.x, z: seat.z, heading: seat.heading, width: 10.6, rows: 5, accent, fill: .26, roof: degrees === 202.5 || degrees === 247.5 }); }
-    for (const end of [-1, 1]) { box(6.6, 3.4, .22, x, 2.2, z + end * 25.6, material('#eef2f8', .22)); for (const leg of [-1, 1]) box(.2, .7, 1.2, x + leg * 2.6, .5, z + end * 25.6, metal); }
+    // Sight screens are matt and lit by the floodlights; a self-lit white board clips to pure white.
+    for (const end of [-1, 1]) { box(6.6, 3.4, .22, x, 2.2, z + end * 25.6, material('#b4bfcc', .03, .9)); for (const leg of [-1, 1]) box(.2, .7, 1.2, x + leg * 2.6, .5, z + end * 25.6, metal); }
     for (let degrees = -18; degrees <= 126; degrees += 9) {
       if (degrees > 78 && degrees < 102) continue;
       const spot = at(degrees, 25.6); const board = box(3.7, .72, .16, spot.x, .72, spot.z, material(degrees % 2 ? accent : P.text, .5)); board.rotation.y = Math.PI / 2 - spot.a;
@@ -170,7 +176,7 @@ export function buildVenues(kit: CityKit) {
   const racingPath = (angle: number) => new THREE.Vector3(race.x + Math.cos(angle) * raceRadiusX, .5, race.z + Math.sin(angle) * 13.5 * k);
   {
     const { x, z } = race, accent = P.violet;
-    apron(x, z, 54, 33, accent);
+    apron(x, z, 54, 33, accent, .46);
     kit.claim('circuit apron', x - 27, z - 16.5, x + 27, z + 16.5);
     const flat = (inner: number, outer: number, mat: THREE.Material, y: number) => { const mesh = new THREE.Mesh(new THREE.RingGeometry(inner, outer, 100), mat); mesh.rotation.x = -Math.PI / 2; mesh.scale.x = stretch; mesh.position.set(x, y, z); kit.source.add(mesh); };
     flat(16.8 * k, 18 * k, material(blend(P.road, accent, .13), 0, .9), .43); flat(10.6 * k, 16.8 * k, dark, .45);
@@ -219,5 +225,5 @@ export function buildVenues(kit: CityKit) {
     for (const side of [-1, 1]) for (const end of [-1, 1]) box(.35, .5, .55, side * .72, .35, end * .8, material('#080b15'), car);
     box(1.7, .15, .4, 0, .7, -1.1, material(color), car); box(.8, .1, .1, 0, .4, 1.45, material('#ffffff', 1), car);
   }
-  return { lights, cars, racingPath, raceRadiusX, race };
+  return { lights, cars, racingPath, raceRadiusX, race, floors };
 }

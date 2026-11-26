@@ -36,7 +36,7 @@ for (const width of [375, 768, 1024, 1440]) {
     const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
     await page.goto('/');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('StatOz Wizard.');
-    await expect(page.getByRole('navigation', { name: 'Opening journey' }).getByRole('link')).toHaveCount(5);
+    await expect(page.getByRole('navigation', { name: 'Opening journey' }).getByRole('link')).toHaveCount(4);
     for (const id of ['welcome', 'entry', 'follow', 'predict', 'knowledge', 'games', 'city']) {
       await chapter(page, id);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), id).toBe(true);
@@ -72,7 +72,7 @@ test('keyboard chapter links, rapid scroll and replay preserve navigation', asyn
   await expect(navigation.getByRole('link', { name: /Play/ })).toHaveAttribute('aria-current', 'step');
   await chapter(page, 'city');
   await page.getByRole('link', { name: 'StatOz City home' }).click();
-  await expect(navigation.getByRole('link', { name: /Arrival/ })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'StatOz City home' })).toBeVisible();
   await expect(page.locator('#journey-welcome')).toBeFocused();
 });
 
@@ -275,7 +275,7 @@ test('four themed chapter details retain real product destinations and respond t
   await expect(match).toContainText('RCB won by 2 runs');
   await chapter(page,'predict');
   const forecast=page.locator('[data-chapter-detail="predict"]');
-  await expect(forecast).toContainText('ILLUSTRATIVE FORECAST');
+  await expect(forecast).toContainText(/illustrative forecast/i);
   await forecast.getByRole('button',{name:/Kylian Mbappé/}).click();
   await expect(forecast.getByRole('button',{name:/Kylian Mbappé/})).toHaveAttribute('aria-pressed','true');
   await expect(forecast.getByRole('img')).toHaveAccessibleName(/Highlighting Kylian Mbappé/);

@@ -2,7 +2,7 @@
 
 After the opening journey reaches the city, the coupe becomes player controlled. A cold link to a place retains that place's existing HUD. The visitor can leave free roam for the overview at any time and return through **Settings → Free roam**. The player's position and parked car survive that switch for the current scene session.
 
-The desktop view now has one Settings button in the header. Vehicle actions, camera distance, city activity, sound, view selection, and the keyboard guide live in its native modal. Opening Settings suspends player input; vehicle/camera actions close it and run after the controller resumes. The refresh/overview icon, Explore chip, and Replay journey button have been removed. The introductory hint disappears after four seconds and stays dismissed when visiting a place or changing vehicle.
+The desktop view now has one Settings button in the header. Vehicle actions, camera view, city activity, sound, view selection, and the keyboard guide live in its native modal. Opening Settings suspends player input; vehicle/camera actions close it and run after the controller resumes. The refresh/overview icon, Explore chip, and Replay journey button have been removed. The introductory hint disappears after four seconds and stays dismissed when visiting a place or changing vehicle.
 
 The compact map sits at the bottom center. It is an isometric vector relief of the same district, with extruded building silhouettes, raised sports grounds, contour lines, roads, the parked car, and a heading marker projected into the same coordinates. Its static geometry is memoized; no canvas or renderer is added. Desktop movement buttons are hidden by default and can be enabled in Settings. Touch/phone layouts retain a compact direction pad and vehicle/brake controls.
 
@@ -20,7 +20,7 @@ The visibility refinement gives the waypoint a compact translucent StatOz plate 
 | Park and step out / enter the nearby car | E | Step out / Enter car |
 | Visit a nearby location | F | Nearby-place prompt |
 | Look around | Drag the scene | Drag the scene |
-| Switch camera distance | C | Settings → Change camera distance |
+| Cycle chase, close and cockpit views | C | Settings → Change camera view |
 | Reset player and car to the arrival street | R | Keyboard shortcut |
 | Leave free roam | Escape | Settings → City overview |
 
@@ -54,3 +54,51 @@ The hint test records its actual insertion/removal times with a DOM observer. Du
 Final declutter validation: production build and TypeScript passed; all 16 targeted production checks passed in 1.8 minutes. This includes Settings/phone accessibility, actual car/avatar commands, the measured hint timeout, compact bottom-center map bounds, pointer cancellation, input suspension, city activity, WebGL recovery, retained routes and venue return. Phone layouts remain browser emulation.
 
 Directional waypoint validation: the latest borderless StatOz refinement passed the production build/TypeScript and both focused projection/visit checks. At 1440px and emulated 390px, turning the view reverses the marker's screen side while the player stays still; the borderless clipped plate stays inside safe viewport bounds, passes the HUD accessibility audit, and still opens App Station. Reviewed screenshots: `docs/qa/city-waypoint-1440.png` and `docs/qa/city-waypoint-390.png`. The existing touch/control and Settings checks passed during the preceding directional-marker revision.
+
+The licensed cockpit and physical city navigation display are documented in [CITY-COCKPIT.md](CITY-COCKPIT.md). Cockpit mode hides the external minimap; stepping out restores the complete parked-car exterior.
+
+
+## Contact with cars and people
+
+The free-roam car starts in the northbound left lane (`x = -18.8`), clear of
+oncoming vehicles. `city-contact.ts` provides horizontal capsule footprints shared
+by the player, traffic and standing people. Capsule axes rotate with vehicles;
+height separation excludes elevated objects. Sweeps take steps no longer than
+0.18 units (the static movement layer uses 0.25) so boosted driving does not tunnel
+through a person or another car. Bodies already touching can move back out.
+
+The player movement controller reads live traffic and people footprints before
+moving. Walking slides around contact; driving stops. Sustained contact fires
+one response until the bodies separate: a short message, a small decaying camera
+jolt/body rock, and pooled sparks for vehicle/scenery impacts above walking speed.
+People contacts use an unobtrusive message and reaction animation. Reduced motion
+disables the camera/body jolt. Reset, pause, focus loss, touch cancellation and
+keyboard/touch/gamepad continue to use the same movement path.
+
+The world also passes the player and their parked vehicle to NPC movement.
+Pedestrians predict the visitor's approach, stop texting, give way and step aside;
+actual contact plays a brief hand gesture before rejoining their existing route.
+Standing athletes and marshals have solid footprints too. Traffic retains its
+lane graph, signals, crossing rules, following distance and overtaking behaviour;
+hard capsule contact stops any remaining approach, lights the brakes, rocks the
+body briefly and then lets traffic resume. The parked coupe remains an obstacle
+while the visitor is on foot. Circuit cars also have solid footprints: they brake on contact, hold, and resume
+their laps after the track clears. Wheel rotation follows actual travel.
+NPC simulation is subdivided to at most 1/60 second steps. The scripted opening retains its authored route and traffic exclusions.
+
+Checks: `tests/city-contact.spec.ts` covers fast sweeps, rotated footprints,
+height filtering, escape from contact, live-car blocking/reverse and pedestrian
+reaction/recovery. Existing free-roam checks cover entry/exit, pause, touch,
+focus release, camera controls and destination navigation.
+
+Contact revision validation (23 November 2026): `npm run check` and the production
+build pass. All three deterministic contact tests pass (sweeps/rotation/escape,
+live footprints and circuit stop/resume). Fresh Chromium sessions at 390px pass
+both real-input browser scenarios: one response while driving into traffic,
+zero speed at contact, reversing clear and feedback expiry; and on-foot contact,
+pedestrian gesture and recovery. Neither session reported runtime or console
+errors. Screenshots: `docs/qa/contact-vehicle-390.png` and
+`docs/qa/contact-person.png`. An earlier 1440px vehicle contact capture is retained
+in `docs/qa/contact-vehicle-1440.png`. The complete desktop regression run was not
+completed: browser processes hit low-memory/model-loading failures and loading
+timeouts on this machine. No remote changes were made.

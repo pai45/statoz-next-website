@@ -1,6 +1,7 @@
 'use client';
 
-import { useId, useState, type CSSProperties } from 'react';
+import { useId, useState, type CSSProperties, type ReactNode } from 'react';
+import { CityIcon } from './city-icons';
 import { JOURNEY_GAMES, type JourneyChapterId } from './city-journey-config';
 import c from './city-chapter-detail.module.css';
 
@@ -14,68 +15,76 @@ const contenders = [
   { name:'Erling Haaland', label:'Haaland', color:'violet', values:[38,37,36,34,32,32,30,30,28,22] },
 ] as const;
 const answers = ['Boston Celtics','New York Knicks','Oklahoma City Thunder','San Antonio Spurs'];
-const point = (value:number,index:number) => `${14+index*54},${96-value*1.6}`;
+const SPORTS = new Set(JOURNEY_GAMES.map(game => game.sport)).size;
+// 15–50% spans the chart's full height, so the three lines separate instead of bunching at the top.
+const y = (value:number) => 4 + (50 - value) * 1.6;
+const point = (value:number,index:number) => `${index*56},${y(value)}`;
 
-function MatchDetail() {
-  return <section className={c.panel + ' ' + c.match} data-chapter-detail="follow" aria-label="RCB versus CSK match stats">
-    <div className={c.meta}><span>IPL / 03 MAY 2025</span><b>RESULT</b></div>
-    <div className={c.scoreboard}>
-      <div className={c.team}><span className={c.badge} data-team="rcb">RCB</span><span><b>Royal Challengers</b><small>Bengaluru</small></span></div>
-      <div className={c.score}><strong>213<span>/5</span></strong><small>20.0 OV · RR 10.65</small></div>
-      <div className={c.team}><span className={c.badge} data-team="csk">CSK</span><span><b>Chennai Super Kings</b><small>Chennai</small></span></div>
-      <div className={c.score}><strong>211<span>/5</span></strong><small>20.0 OV · RR 10.55</small></div>
-    </div>
-    <div className={c.matchFooter}><p><i aria-hidden="true" />RCB won by <b>2 runs</b></p><a href={MATCH_SOURCE} target="_blank" rel="noreferrer" aria-label="Read the official RCB versus CSK scorecard">Scorecard <span aria-hidden="true">↗</span></a></div>
+type DockProps = { id: JourneyChapterId; label: string; className: string; labelledBy?: string; status?: ReactNode; action: ReactNode; children: ReactNode };
+
+/** One broadcast lower-third: the chapter's proof on top, its status and next step in the footer. */
+function Dock({ id, label, className, labelledBy, status, action, children }: DockProps) {
+  return <section className={c.dock + ' ' + className} data-chapter-detail={id} aria-label={labelledBy ? undefined : label} aria-labelledby={labelledBy}>
+    {children}
+    <div className={c.footer}><div className={c.status}>{status}</div>{action}</div>
   </section>;
 }
 
-function PredictionDetail() {
+function MatchDetail({ action }: { action: ReactNode }) {
+  return <Dock id="follow" label="RCB versus CSK match result" className={c.match} action={action} status={<p className={c.result}><i aria-hidden="true" />RCB won by <b>2 runs</b></p>}>
+    <div className={c.meta}><span>IPL · 3 May 2025 · Result</span><a href={MATCH_SOURCE} target="_blank" rel="noreferrer" aria-label="Read the official RCB versus CSK scorecard">Scorecard<CityIcon name="external" /></a></div>
+    <div className={c.scoreboard}>
+      <div className={c.team} data-winner><span className={c.badge} data-team="rcb">RCB</span><span className={c.teamName}><b>Royal Challengers</b><small>Bengaluru</small></span><span className={c.score}><strong>213<span>/5</span></strong><small>20.0 ov</small></span></div>
+      <div className={c.team}><span className={c.badge} data-team="csk">CSK</span><span className={c.teamName}><b>Chennai Super Kings</b><small>Chennai</small></span><span className={c.score}><strong>211<span>/5</span></strong><small>20.0 ov</small></span></div>
+    </div>
+  </Dock>;
+}
+
+function PredictionDetail({ action }: { action: ReactNode }) {
   const [selected,setSelected] = useState(0);
   const gradient=useId().replace(/:/g,'');
   const current=contenders[selected];
-  return <section className={c.panel + ' ' + c.prediction} data-chapter-detail="predict" aria-labelledby="city-prediction-question">
-    <div className={c.meta}><span>BALLON D’OR / 2027</span><b>ILLUSTRATIVE FORECAST</b></div>
-    <h3 id="city-prediction-question">Who will be the Ballon d’Or winner?</h3>
-    <svg className={c.chart} viewBox="0 0 520 112" role="img" aria-label={`Illustrative forecast, not live probabilities. Lamine Yamal 44 percent, Kylian Mbappé 34 percent, Erling Haaland 22 percent. Highlighting ${current.name}.`}>
-      <defs><linearGradient id={gradient} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={`var(--ds-color-accent-${current.color})`} stopOpacity=".22" /><stop offset="1" stopColor={`var(--ds-color-accent-${current.color})`} stopOpacity="0" /></linearGradient></defs>
-      <g className={c.chartGrid}><path d="M14 16H500M14 56H500M14 96H500M122 10V96M230 10V96M338 10V96M446 10V96" /></g>
-      <path d={`M${current.values.map(point).join(' L')} L500 96 L14 96 Z`} fill={`url(#${gradient})`} />
-      {contenders.map((candidate,index)=><polyline key={candidate.name} points={candidate.values.map(point).join(' ')} pathLength="1" className={c.chartLine} data-highlighted={selected===index} style={{'--series-color':`var(--ds-color-accent-${candidate.color})`} as CSSProperties} />)}
-      <circle cx="500" cy={96-current.values[9]*1.6} r="4" fill={`var(--ds-color-accent-${current.color})`} stroke="var(--ds-color-background-muted)" strokeWidth="2" />
-      <g className={c.chartLabels}><text x="14" y="109">EARLIER</text><text x="500" y="109" textAnchor="end">NOW</text></g>
+  return <Dock id="predict" label="Ballon d’Or forecast" labelledBy="city-prediction-question" className={c.prediction} action={action}
+    status={<div className={c.contenders} role="group" aria-label="Highlight a Ballon d’Or prediction">
+      {contenders.map((candidate,index)=><button type="button" key={candidate.name} aria-pressed={selected===index} aria-label={`${candidate.name}, ${candidate.values[9]} percent illustrative forecast`} onClick={()=>setSelected(index)} style={{'--series-color':`var(--ds-color-accent-${candidate.color})`} as CSSProperties}><span>{candidate.label}</span><b>{candidate.values[9]}<small>%</small></b></button>)}
+    </div>}>
+    <div className={c.question}><h3 id="city-prediction-question">Who wins the Ballon d’Or 2027?</h3><span className={c.tag}>Illustrative forecast</span></div>
+    <div className={c.chartFrame} style={{'--series-color':`var(--ds-color-accent-${current.color})`,'--end':`${y(current.values[9])/64*100}%`} as CSSProperties}>
+    <svg className={c.chart} viewBox="0 0 504 64" preserveAspectRatio="none" role="img" aria-label={`Illustrative forecast, not live probabilities. Lamine Yamal 44 percent, Kylian Mbappé 34 percent, Erling Haaland 22 percent. Highlighting ${current.name}.`}>
+      <defs><linearGradient id={gradient} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={`var(--ds-color-accent-${current.color})`} stopOpacity=".2" /><stop offset="1" stopColor={`var(--ds-color-accent-${current.color})`} stopOpacity="0" /></linearGradient></defs>
+      <path className={c.chartGrid} d="M0 63.5H504" />
+      <path d={`M${current.values.map(point).join(' L')} L504 64 L0 64 Z`} fill={`url(#${gradient})`} />
+      {contenders.map((candidate,index)=><polyline key={candidate.name} points={candidate.values.map(point).join(' ')} className={c.chartLine} data-highlighted={selected===index} style={{'--series-color':`var(--ds-color-accent-${candidate.color})`} as CSSProperties} />)}
     </svg>
-    <div className={c.contenders} role="group" aria-label="Highlight a Ballon d’Or prediction">
-      {contenders.map((candidate,index)=><button type="button" key={candidate.name} aria-pressed={selected===index} aria-label={`${candidate.name}, ${candidate.values[9]} percent illustrative forecast`} onClick={()=>setSelected(index)} style={{'--series-color':`var(--ds-color-accent-${candidate.color})`} as CSSProperties}><span><i aria-hidden="true" />{candidate.label}</span><b>{candidate.values[9]}<small>%</small></b></button>)}
+    <span className={c.chartEnd} aria-hidden="true" />
     </div>
-  </section>;
+  </Dock>;
 }
 
-function QuizDetail() {
+function QuizDetail({ action }: { action: ReactNode }) {
   const [answer,setAnswer]=useState<number|null>(null);
   const correct=answer===1;
-  return <section className={c.panel + ' ' + c.quiz} data-chapter-detail="knowledge" aria-labelledby="city-quiz-question">
-    <div className={c.meta}><span>THE KNOWLEDGE CHECK</span><b>NBA / 2026</b></div>
+  return <Dock id="knowledge" label="NBA quiz" labelledBy="city-quiz-question" className={c.quiz} action={action}
+    status={<p className={c.feedback} role="status" aria-live="polite" data-result={answer===null?undefined:correct?'correct':'incorrect'}>{answer===null?'Pick your champion.':correct?<>Correct. New York won the series 4–1. <a href={NBA_SOURCE} target="_blank" rel="noreferrer" aria-label="Read the 2026 NBA Finals result"><CityIcon name="external" /></a></>:'Not quite. Try another team.'}</p>}>
     <h3 id="city-quiz-question">Who were the NBA champions of 2026?</h3>
     <div className={c.answers} role="group" aria-labelledby="city-quiz-question">
-      {answers.map((team,index)=><button type="button" key={team} aria-pressed={answer===index} data-result={answer===index ? correct?'correct':'incorrect':undefined} onClick={()=>setAnswer(index)}><span className={c.answerNumber} aria-hidden="true">0{index+1}</span><span>{team}</span><span className={c.answerCheck} aria-hidden="true">{answer===index?(correct?'✓':'×'):''}</span></button>)}
+      {answers.map((team,index)=><button type="button" key={team} aria-pressed={answer===index} data-result={answer===index ? correct?'correct':'incorrect':undefined} onClick={()=>setAnswer(index)}><span>{team}</span>{answer===index && <CityIcon name={correct?'check':'close'} className={c.answerMark} />}</button>)}
     </div>
-    <p className={c.quizFeedback} role="status" aria-live="polite">{answer===null?'Pick your champion.':correct?<>Correct. New York won the series 4–1. <a href={NBA_SOURCE} target="_blank" rel="noreferrer" aria-label="Read the 2026 NBA Finals result">↗</a></>:'Not quite. Try another team.'}</p>
-  </section>;
+  </Dock>;
 }
 
-function GamesDetail() {
-  return <section className={c.panel + ' ' + c.games} data-chapter-detail="games" aria-label="Discover StatOz games">
-    <div className={c.meta}><span>YOUR NEXT OBSESSION</span><b>STATOZ GAMES</b></div>
+function GamesDetail({ action }: { action: ReactNode }) {
+  return <Dock id="games" label="Discover StatOz games" className={c.games} action={action} status={<p className={c.count}><b>{JOURNEY_GAMES.length}</b> games · <b>{SPORTS}</b> sports</p>}>
     <ul className={c.gameStrip} aria-label="Games to play">
-      {JOURNEY_GAMES.slice(0,6).map(game=><li key={game.slug}><a href={'https://games.statoz.in/play/'+game.slug} aria-label={'Play '+game.name}><span className={c.gameArt}><img src={game.image} alt="" width="180" height="240" loading="lazy" /></span><span className={c.gameCaption}><small>{game.sport}</small><b>{game.name}</b><i aria-hidden="true">↗</i></span></a></li>)}
+      {JOURNEY_GAMES.slice(0,6).map(game=><li key={game.slug}><a href={'https://games.statoz.in/play/'+game.slug} aria-label={'Play '+game.name}><span className={c.gameArt}><img src={game.image} alt="" width="180" height="240" loading="lazy" /></span><span className={c.gameCaption}><small>{game.sport}</small><b>{game.name}</b></span></a></li>)}
     </ul>
-  </section>;
+  </Dock>;
 }
 
-export function CityChapterDetail({id}:{id:JourneyChapterId}) {
-  if(id==='follow') return <MatchDetail />;
-  if(id==='predict') return <PredictionDetail />;
-  if(id==='knowledge') return <QuizDetail />;
-  if(id==='games') return <GamesDetail />;
+export function CityChapterDetail({ id, action }: { id: JourneyChapterId; action: ReactNode }) {
+  if(id==='follow') return <MatchDetail action={action} />;
+  if(id==='predict') return <PredictionDetail action={action} />;
+  if(id==='knowledge') return <QuizDetail action={action} />;
+  if(id==='games') return <GamesDetail action={action} />;
   return null;
 }

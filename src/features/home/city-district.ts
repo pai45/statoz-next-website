@@ -38,6 +38,8 @@ export function buildDistrict(kit: CityKit, mobile: boolean) {
     box(armX ? 1.1 : .4, .12, armZ ? 1.1 : .4, x + armX * 1.5, 5.7, z + armZ * 1.5, material(tint, 2.2));
     kit.pool(x + armX * 2.6, z + armZ * 2.6, 4.8, tint, .3);
     kit.reflection(x + armX * 2.2, z + armZ * 2.2, tint, .5, 8);
+    // A metre under the head: any closer and the light floods the lamp's own arm into a bloom halo.
+    kit.lampSpot(x + armX * 1.5, 4.6, z + armZ * 1.5, tint);
   }
   for (const z of STREETS_Z) for (let x = -104; x <= 104; x += 16) {
     if (nearStreet(x, STREETS_X, 6.5) || (z === 3 && x > 14 && x < 82)) continue;
@@ -66,6 +68,7 @@ export function buildDistrict(kit: CityKit, mobile: boolean) {
     const awning = box(width - .8, .08, 1.4, 0, 3.62, depth / 2 + .3, material('#2b3546', 0, .6), shell); awning.rotation.x = .16;
     box(width - .8, .04, .05, 0, 3.52, depth / 2 + .98, material(tint, .5), shell);
     kit.pool(x, z + depth / 2 + 1.6, 4.6, '#ffe2b0', .42);
+    kit.lampSpot(x, 2.4, z + depth / 2 + .9, '#ffd9a8');
     kit.claim('shop ' + name, x - width / 2, z - depth / 2 - .4, x + width / 2, z + depth / 2 + 1);
   }
   function billboard(x: number, z: number, yaw: number, title: string, line: string, tint: string, height = 10) {
@@ -101,7 +104,7 @@ export function buildDistrict(kit: CityKit, mobile: boolean) {
     const z = -29.6 + i * 2.72; box(4.6, .02, .08, row, .07, z, material('#7c8ba3'));
     if (i < 9 && random() < .68) parked(row, z + 1.36, row < 69 ? Math.PI / 2 : -Math.PI / 2);
   }
-  for (const z of [-25, -10]) { box(.22, 7, .22, 69, 3.5, z, metal); box(2.6, .16, .7, 69, 7, z, material('#eaf3ff', 2)); kit.pool(69, z, 9, '#e3efff', .5); }
+  for (const z of [-25, -10]) { box(.22, 7, .22, 69, 3.5, z, metal); box(2.6, .16, .7, 69, 7, z, material('#eaf3ff', 2)); kit.pool(69, z, 9, '#e3efff', .5); kit.lampSpot(69, 5.8, z, '#e3efff'); }
   for (const z of [-34.6, -3.6]) for (const x of [62, 67, 72, 77]) kit.tree(x, z, .8);
 
   // The StatOz products are advertised in-world, as they are in the header.

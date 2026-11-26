@@ -1,7 +1,9 @@
-export function CityIcon({ name, ...props }: React.SVGProps<SVGSVGElement> & { name: 'settings' | 'arrow' | 'map' | 'close' | 'compass' | 'reset' | 'chevron' | 'mouse' | 'sun' | 'menu' | 'plus' | 'minus' | 'pause' | 'play' }) {
+export function CityIcon({ name, ...props }: React.SVGProps<SVGSVGElement> & { name: 'settings' | 'arrow' | 'external' | 'check' | 'map' | 'close' | 'compass' | 'reset' | 'chevron' | 'mouse' | 'sun' | 'menu' | 'plus' | 'minus' | 'pause' | 'play' }) {
   const paths: Record<string, React.ReactNode> = {
     settings: <><path d="m9.6 3-.5 2-1.7 1-2-.6-2.4 4.2 1.5 1.4v2L3 14.4l2.4 4.2 2-.6 1.7 1 .5 2h4.8l.5-2 1.7-1 2 .6 2.4-4.2-1.5-1.4v-2L21 9.6l-2.4-4.2-2 .6-1.7-1-.5-2Z" /><circle cx="12" cy="12" r="3" /></>,
     arrow: <><path d="M5 12h14M13 6l6 6-6 6" /></>,
+    external: <path d="M7 17 17 7M9 7h8v8" />,
+    check: <path d="m5 12.5 4.5 4.5L19 7.5" />,
     map: <><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z" /><path d="M9 3v15m6-12v15" /></>,
     close: <path d="m6 6 12 12M6 18 18 6" />,
     compass: <><circle cx="12" cy="12" r="9" /><path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z" /></>,

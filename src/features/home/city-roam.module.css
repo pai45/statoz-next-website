@@ -40,3 +40,5 @@
   .instructions { display:none; }.mapPanel { width:170px; bottom:8px; }.map { height:88px; }.controls { bottom:12px; }.context { bottom:135px; max-width:240px; }.hud:has([data-roam-touch-controls]) .context { bottom:135px; }.hud button { min-height:44px; }
 }
 @media(prefers-reduced-motion:reduce) { .instructions { animation:none; } }
+:global([data-scene-status]:has([data-roam-camera=cockpit])) .mapPanel { visibility:hidden; }
+@media(max-width:700px) { :global([data-scene-status]:has([data-roam-camera=cockpit])) .controls { bottom:max(24px,env(safe-area-inset-bottom)); } }

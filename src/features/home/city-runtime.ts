@@ -9,7 +9,7 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { gsap } from 'gsap';
 import { HAZE } from './city-district';
 import { buildCityWorld } from './city-world';
-import { cityEnvironment } from './city-gateway';
+import { captureCityEnvironment, cityEnvironment } from './city-gateway';
 import { CITY_LOCATIONS, CITY_OVERVIEW, CITY_PALETTE, locationById, type CityLocationId, type CityMode } from './city-config';
 import { createCityDrive } from './city-drive';
 import { createCityRoam, type RoamStatus } from './city-roam';
@@ -79,6 +79,8 @@ export async function createCityRuntime(host: HTMLDivElement, callbacks: Callbac
   renderer.shadowMap.type = THREE.PCFShadowMap;
   const environment = cityEnvironment(renderer);
   scene.environment = environment.texture; scene.environmentIntensity = .28;
+  // On desktop the placeholder is replaced by a snapshot of the lit city once it has loaded.
+  let cityReflections: THREE.WebGLRenderTarget | null = null;
 
   let disposed = false, ready = false, focusedTween = false, warmed = false, compiling = false, gpuReleased = false;
   // ——— Loader: the logo is reforged from its fragments while the city loads, on the same canvas. ———
@@ -173,8 +175,11 @@ export async function createCityRuntime(host: HTMLDivElement, callbacks: Callbac
   const world = await buildCityWorld(scene, renderer, mobile);
   setStage(.5);
   const drive = createCityDrive(scene, camera, host);
-  const roam = createCityRoam(scene, camera, host, { onStatus: callbacks.onRoamStatus, onVisit: callbacks.onSelect, onExit: callbacks.onExitRoam });
-  void world.assetReady.then(() => { if (!disposed) roam.setSolids(world.roamSolids()); });
+  const roam = createCityRoam(scene, camera, host, { onStatus: callbacks.onRoamStatus, onVisit: callbacks.onSelect, onExit: callbacks.onExitRoam, onContact: contact => {
+    world.reactContact(contact);
+    if (contact.kind !== 'person' && contact.speed > 2) sparks.emit(new THREE.Vector3(contact.x, .55, contact.z), CITY_PALETTE.gold, Math.min(28, Math.round(contact.speed * 1.4)), 2.5, elapsed);
+  } });
+  void world.assetReady.then(() => { if (!disposed) roam.setSolids(world.roamSolids(), world.roamFloors); });
   // Dust in the floodlight beams and over the avenue; fireflies in the park.
   const motes = createMotes(mobile, [
     { center: new THREE.Vector3(22, 0, -27), radius: 30, height: 20, color: '#dff4ff', count: 900 },
@@ -487,13 +492,14 @@ export async function createCityRuntime(host: HTMLDivElement, callbacks: Callbac
         state = { ...state, focused: null }; world.highlight(null); callbacks.onLeave();
       }
     } else if (!driveActive && (state.mode !== 'roam' || state.focused)) camera.lookAt(controls.target);
-    if (!state.journey && state.mode === 'roam' && !state.focused) roam.update(delta, elapsed);
+    if (!state.journey && state.mode === 'roam' && !state.focused) { roam.setBodies(world.bodies()); roam.update(delta, elapsed); }
     const goal = frameTarget(), ease = reducedMotion ? 1 : Math.min(1, delta * 3.2);
     if (Math.abs(goal.x - shiftX) > .0004 || Math.abs(goal.y - shiftY) > .0004) { shiftX += (goal.x - shiftX) * ease; shiftY += (goal.y - shiftY) * ease; applyViewOffset(); }
     if (!state.journey && state.mode === 'roam' && !state.focused) roam.projectWaypoint(width, height);
     const carPosition = drive.carState().position;
     if (lastWorldTime !== elapsed) {
-      const gap = world.update(elapsed, state.journey ? { x: carPosition.x, z: carPosition.z } : state.mode === 'roam' ? roam.position() : null);
+      const gap = world.update(elapsed, state.journey ? { x: carPosition.x, z: carPosition.z } : state.mode === 'roam' ? roam.vehiclePosition() : null, state.journey, !state.journey && state.mode === 'roam' ? roam.bodies() : []);
+      for (const contact of world.drainContacts()) { if (contact.receiver === 'npc') world.reactContact(contact); else roam.receiveContact(contact); }
       if (state.journey && display > 1.3 && display < 5) trafficGap = Math.min(trafficGap, gap);
       motes.update(elapsed); sparks.update(elapsed); lastWorldTime = elapsed;
     }
@@ -530,7 +536,7 @@ export async function createCityRuntime(host: HTMLDivElement, callbacks: Callbac
   }
   function releaseGpu() {
     if (gpuReleased) return;
-    gpuReleased = true; roam.dispose(); drive.dispose(); crest.dispose(); logoTexture.dispose(); environment.dispose(); world.dispose(); disposeComposer(); renderer.dispose(); renderer.forceContextLoss();
+    gpuReleased = true; roam.dispose(); drive.dispose(); crest.dispose(); logoTexture.dispose(); environment.dispose(); cityReflections?.dispose(); world.dispose(); disposeComposer(); renderer.dispose(); renderer.forceContextLoss();
   }
   const visibility = () => { lastFrame = performance.now(); loaderLast = performance.now(); cityAudio.suspend(document.hidden); renderer.setAnimationLoop(document.hidden ? null : warmed ? frame : loaderFrame); };
   document.addEventListener('visibilitychange', visibility);
@@ -561,7 +567,7 @@ export async function createCityRuntime(host: HTMLDivElement, callbacks: Callbac
     }
   }
   void (async () => {
-    await world.assetReady;
+    await Promise.all([world.assetReady, drive.ready, roam.ready]);
     if (disposed) return;
     compiling = true;
     let restore = drive.warmup(), restoreRoam = roam.warmup();
@@ -594,6 +600,12 @@ export async function createCityRuntime(host: HTMLDivElement, callbacks: Callbac
     await new Promise<void>(resolve => { const wait = () => (disposed || (shown >= 1 && buildClock >= CREST_TIMING.done) ? resolve() : setTimeout(wait, 30)); wait(); });
     if (disposed) { releaseGpu(); return; }
     compiling = true;
+    // Metal, glass, paint and wet ground reflect the finished city at full power. The snapshot is taken
+    // before the warm frame, so the materials pick up the new map behind the still logo too.
+    if (composer) {
+      cityReflections = captureCityEnvironment(renderer, scene, new THREE.Vector3(-5, 10, 12));
+      scene.environment = cityReflections.texture; scene.environmentIntensity = .75; performance.mark('city:reflections');
+    }
     restore = drive.warmup(); restoreRoam = roam.warmup();
     try { if (composer) composer.render(0); else renderer.render(scene, camera); performance.mark('city:warm-frame'); }
     finally { restore(); restoreRoam(); compiling = false; }
@@ -607,7 +619,7 @@ export async function createCityRuntime(host: HTMLDivElement, callbacks: Callbac
     warmed = true; visibility();
   })().catch(() => { if (disposed) releaseGpu(); else callbacks.onFailure(); });
   // Browser tests read actual world state (animation, pause) through the scene graph.
-  (window as unknown as { __cityDebug?: { scene: THREE.Scene } }).__cityDebug = { scene };
+  (window as unknown as { __cityDebug?: { scene: THREE.Scene; camera: THREE.PerspectiveCamera } }).__cityDebug = { scene, camera };
   host.dataset.quality = software ? 'software' : mobile ? 'mobile' : 'desktop';
   host.dataset.people = String(world.lifeCounts.people); host.dataset.athletes = String(world.lifeCounts.athletes); host.dataset.stands = String(world.lifeCounts.stands);
 

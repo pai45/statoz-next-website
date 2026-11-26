@@ -168,7 +168,7 @@ export function buildLandmarks(kit: CityKit) {
     const { x, z } = spot('help'), centre = kit.group(x, z), cyan = P.cyan;
     cylinder(7, .4, 0, .2, 0, material('#1b2f44'), 40, centre); kit.ring(x, z, 7, cyan, .16, .56);
     cylinder(4.6, 4.2, 0, 2.5, 0, material('#17394a', 0, .3), 28, centre);
-    for (let i = 1; i < 16; i++) { const a = i / 16 * Math.PI * 2; kit.windowQuad(centre, Math.sin(a) * 4.6, 2.75, Math.cos(a) * 4.6, 1.35, 2.4, a, '#c8f1ff', 1.05); }
+    for (let i = 1; i < 16; i++) { const a = i / 16 * Math.PI * 2; kit.windowQuad(centre, Math.sin(a) * 4.6, 2.75, Math.cos(a) * 4.6, 1.35, 2.4, a, '#9fdcf0', .55); }
     box(1.7, 2.7, .2, 0, 1.75, 4.6, material('#0d1b29'), centre);
     cylinder(6.8, .36, 0, 4.82, 0, material('#13212f', 0, .5), 40, centre); kit.ring(x, z, 6.8, cyan, .2, 5.14);
     cylinder(2, .5, 0, 5.25, 0, material('#bfefff', .9), 24, centre); cylinder(.16, 6.6, 0, 8.8, 0, metal, 8, centre);

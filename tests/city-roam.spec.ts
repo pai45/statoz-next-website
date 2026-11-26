@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { createRoamSpace, ROAM_BOUNDS } from '../src/features/home/city-roam-physics';
+import { createRoamSpace, ROAM_BOUNDS, ROAM_SPAWN } from '../src/features/home/city-roam-physics';
 
 test('movement sweeps into walls, slides on foot and respects district limits', () => {
   const space = createRoamSpace([{ minX: 2, maxX: 3, minZ: -8, maxZ: 8, minY: 0, maxY: 10 }]);
@@ -31,6 +31,13 @@ async function settings(page: Page) { await page.getByRole('button', { name: 'Se
 test('journey hands over the car; avatar can leave, walk and re-enter it', async ({ page }) => {
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message)); page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   await enter(page);
+  // A clear chase view must settle outside the rear bodywork after the journey handoff.
+  await page.waitForTimeout(1000);
+  await expect.poll(() => page.evaluate(() => {
+    const { scene, camera } = (window as any).__cityDebug;
+    const car = scene.getObjectByName('free-roam-car');
+    return camera.position.distanceTo(car.position);
+  })).toBeGreaterThan(7);
   expect(Number(await page.locator('[data-city-scene]').getAttribute('data-roam-solids'))).toBeGreaterThan(100);
   const initial = await position(page);
   await page.keyboard.down('w'); await page.waitForTimeout(700);
@@ -49,7 +56,7 @@ test('journey hands over the car; avatar can leave, walk and re-enter it', async
   await expect.poll(() => position(page)).not.toBe(avatar);
   await page.screenshot({ path: 'docs/qa/roam-avatar.png' });
   await page.keyboard.press('r');
-  await expect(page.locator('[data-city-scene]')).toHaveAttribute('data-roam-position', '-19.80,70.00');
+  await expect(page.locator('[data-city-scene]')).toHaveAttribute('data-roam-position', `${(ROAM_SPAWN.x - 2.8).toFixed(2)},${ROAM_SPAWN.z.toFixed(2)}`);
   await settings(page); await page.getByRole('button', { name: /Pause city activity/ }).click(); await page.getByRole('button', { name: 'Close', exact: true }).click();
   const paused = await position(page); await page.locator('canvas').focus(); await page.keyboard.down('w'); await page.waitForTimeout(300); await page.keyboard.up('w'); expect(await position(page)).toBe(paused);
   await settings(page); await page.getByRole('button', { name: /Resume city activity/ }).click(); await page.getByRole('button', { name: 'Close', exact: true }).click();

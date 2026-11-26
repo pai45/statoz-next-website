@@ -8,13 +8,19 @@ import { buildDistrict } from './city-district';
 import { createCityKit } from './city-kit';
 import { buildLandmarks } from './city-landmarks';
 import { createCityLife } from './city-life';
+import { createCityTraffic } from './city-traffic';
+import { loadPeople, loadVehicles, type VehicleKit } from './city-kenney';
+import { DRIVE_ROUTES } from './city-drive';
 import { buildVenues } from './city-venues';
 import { buildGateway } from './city-gateway';
 import { buildCityRefinement } from './city-refinement';
 import { loadCityGameAssets } from './city-game-assets';
+import type { CityBody, CityContact } from './city-contact';
+import { createCircuitContact } from './city-circuit-contact';
 import type { CitySolid } from './city-roam-physics';
 
 export type CityWorld = Awaited<ReturnType<typeof buildCityWorld>>;
+const AXLE = new THREE.Vector3(1, 0, 0);
 /** Yields to the browser between build stages, so input and painting are not blocked by one long task. */
 const breathe = () => new Promise<void>(resolve => setTimeout(resolve, 0));
 
@@ -43,8 +49,46 @@ export async function buildCityWorld(scene: THREE.Scene, renderer: THREE.WebGLRe
   const landmarks = buildLandmarks(kit); performance.mark('city:landmarks'); await breathe();
   const refinement = buildCityRefinement(kit, mobile); await breathe();
   const life = createCityLife(kit.seats, venues.race.x, venues.race.z, mobile); kit.moving.add(life.group);
+  // Street traffic keeps every manoeuvre clear of the coupe's own route, sampled every unit along it.
+  const coupePath = DRIVE_ROUTES.flatMap(path => path.getSpacedPoints(Math.ceil(path.getLength())).map(point => ({ x: point.x, z: point.z })));
+  const traffic = createCityTraffic(coupePath, mobile); kit.moving.add(traffic.group);
+  const circuit = createCircuitContact(venues.cars, venues.racingPath);
   kit.finalize(); performance.mark('city:finalize'); await breathe();
   await kit.rebatch(); performance.mark('city:rebatch');
+  // Street lamps shed real light on people, cars, trees and walls near the view. A fixed pool of lights moves
+  // between the lamps nearest where the camera looks and fades in and out; the light count never changes, so
+  // no program recompiles. Phones keep the painted pools only.
+  const lampPool = Array.from({ length: mobile ? 0 : 6 }, () => {
+    const light = new THREE.PointLight('#ffcf8e', 0, 15, 2); light.name = 'street-lamp-light'; scene.add(light);
+    return { light, spot: -1, level: 0 };
+  });
+  const look = new THREE.Vector3(), focus = new THREE.Vector3();
+  let streetPower = 1, lampClock = performance.now();
+  function lightLamps(camera: THREE.Camera) {
+    const now = performance.now(), ease = Math.min(1, (now - lampClock) / 1000 * 4); lampClock = now;
+    if (!lampPool.length) return;
+    // Where the view rests on the street: along the view until it meets the ground, at most 70 m away.
+    camera.getWorldDirection(look);
+    focus.copy(camera.position).addScaledVector(look, look.y < -.05 ? Math.min(70, camera.position.y / -look.y) : 40);
+    const nearest: { spot: number; distance: number }[] = [];
+    kit.lampSpots.forEach((lamp, spot) => {
+      const distance = lamp.position.distanceToSquared(focus);
+      if (distance > 42 * 42) return;
+      if (nearest.length < lampPool.length) nearest.push({ spot, distance });
+      else { const worst = nearest.reduce((a, b) => (b.distance > a.distance ? b : a)); if (distance < worst.distance) Object.assign(worst, { spot, distance }); }
+    });
+    const wanted = new Set(nearest.map(item => item.spot));
+    for (const item of lampPool) if (item.spot >= 0 && !wanted.has(item.spot) && item.level < .02) item.spot = -1;
+    for (const spot of wanted) {
+      if (lampPool.some(item => item.spot === spot)) continue;
+      const free = lampPool.find(item => item.spot < 0); if (!free) break;
+      free.spot = spot; free.level = 0; free.light.position.copy(kit.lampSpots[spot].position); free.light.color.copy(kit.lampSpots[spot].color);
+    }
+    for (const item of lampPool) {
+      item.level += ((item.spot >= 0 && wanted.has(item.spot) ? 1 : 0) - item.level) * ease;
+      item.light.intensity = reduced ? 0 : 40 * item.level * streetPower;
+    }
+  }
   // Nothing solid may stand in a road or on a pavement. The result is published for the browser tests.
   const layoutIssues = district.roads.audit(kit.claims);
   document.documentElement.dataset.cityLayout = layoutIssues.length ? layoutIssues.join(' | ') : 'clear';
@@ -67,27 +111,35 @@ export async function buildCityWorld(scene: THREE.Scene, renderer: THREE.WebGLRe
     holder.traverse(item => { if (item instanceof THREE.Mesh) item.material = Array.isArray(item.material) ? item.material.map(lit) : lit(item.material); });
     kit.source.add(holder); return holder;
   }
-  const traffic: THREE.Group[] = [];
   let gameAssets: ReturnType<typeof loadCityGameAssets> | undefined;
+  // Kenney Mini Characters and Car Kit: everyone in the city, the street traffic and the circuit cars.
+  const raceWheels: { car: THREE.Group; wheel: THREE.Object3D; base: THREE.Quaternion; radius: number }[] = [];
+  function raceCars(vehicles: VehicleKit) {
+    const material = new THREE.MeshStandardMaterial({ map: vehicles.texture, roughness: .35, metalness: .3 });
+    const glow = new THREE.MeshBasicMaterial({ vertexColors: true, toneMapped: false });
+    for (const [i, car] of venues.cars.entries()) {
+      const model = vehicles.models.get(i % 2 ? 'race-future' : 'race'); if (!model) continue;
+      car.clear();
+      const scale = 4.2 * .75 / Math.max(model.size.x, model.size.z), holder = new THREE.Group(); holder.scale.setScalar(scale); car.add(holder);
+      Object.assign(circuit.bodies()[i], { radius: model.size.x * scale / 2, halfLength: Math.max(0, (model.size.z - model.size.x) * scale / 2) });
+      holder.add(new THREE.Mesh(model.body, material));
+      if (model.lamps.attributes.position.count) holder.add(new THREE.Mesh(model.lamps, glow));
+      for (const wheel of model.wheels) {
+        const mesh = new THREE.Mesh(wheel.geometry, material); mesh.position.copy(wheel.position); mesh.quaternion.copy(wheel.rotation); holder.add(mesh);
+        raceWheels.push({ car, wheel: mesh, base: wheel.rotation.clone(), radius: wheel.radius * scale });
+      }
+    }
+  }
+  const kenney = Promise.all([loadPeople(), loadVehicles()]).then(([people, vehicles]) => {
+    if (disposed) return;
+    life.setKit(people); traffic.setKit(vehicles); raceCars(vehicles);
+  });
   const baseReady = loader.loadAsync(publicAsset('/assets/city/city-kit.glb')).then(async gltf => {
     if (disposed) { disposeObject(gltf.scene); return; }
     assets.push(gltf.scene);
     const templates = gltf.scene.children;
     const buildings = templates.filter(item => item.name.startsWith('building-') || item.name.startsWith('downtown-'));
     STRIP_PLOTS.forEach(([x, z, height, width, depth], i) => { const model = buildings[i % Math.max(buildings.length, 1)]; if (model) placeModel(model, x, z, height, x < 0 ? Math.PI / 2 : -Math.PI / 2, depth, width); });
-    const carModel = templates.find(item => item.name === 'race-car');
-    if (carModel) for (const [i, car] of venues.cars.entries()) {
-      for (const child of [...car.children]) car.remove(child);
-      const mesh = carModel.clone(true); const bounds = new THREE.Box3().setFromObject(mesh); const size = bounds.getSize(new THREE.Vector3());
-      mesh.traverse(object => { if (object instanceof THREE.Mesh) { const tint = (original: THREE.Material) => original.name === 'pylon' ? kit.material([P.pink, P.cyan, P.gold][i], .08) : original; object.material = Array.isArray(object.material) ? object.material.map(tint) : tint(object.material); } });
-      mesh.position.sub(bounds.getCenter(new THREE.Vector3())); mesh.position.y += size.y / 2;
-      const holder = new THREE.Group(); holder.add(mesh); holder.scale.setScalar(3.3 / Math.max(size.z, size.x)); car.add(holder);
-    }
-    if (carModel) for (let i = 0; i < 6; i++) {
-      const model = carModel.clone(true); const bounds = new THREE.Box3().setFromObject(model); const size = bounds.getSize(new THREE.Vector3());
-      model.position.sub(bounds.getCenter(new THREE.Vector3())); model.position.y += size.y / 2;
-      const holder = new THREE.Group(); holder.add(model); holder.scale.setScalar(2.6 / Math.max(size.z, size.x)); kit.moving.add(holder); traffic.push(holder);
-    }
     await kit.rebatch();
     if (disposed) return;
     document.documentElement.dataset.cityAssets = 'base-loaded'; performance.mark('city:kit-loaded');
@@ -97,12 +149,33 @@ export async function buildCityWorld(scene: THREE.Scene, renderer: THREE.WebGLRe
     NORTH_PLOTS.forEach(([x, z, height, width, depth], index) => placeModel(downtown.scene.children[index % downtown.scene.children.length], x, z, height, index % 2 ? 0 : Math.PI, width, depth));
     await kit.rebatch();
     if (disposed) return;
-    gameAssets = loadCityGameAssets(kit, loader, life, venues.cars);
+    gameAssets = loadCityGameAssets(kit, loader);
     await gameAssets.ready;
+    await kenney;
     await district.roads.surfaceReady;
     if (!disposed) document.documentElement.dataset.cityAssets = 'loaded';
   }).catch(() => { if (!disposed) document.documentElement.dataset.cityAssets = 'unavailable'; });
   const assetReady = baseReady;
+
+  /** Individual authored solids remain available behind the render batches. */
+  function collectSolids() {
+      const solids: CitySolid[] = [], bounds = new THREE.Box3();
+      kit.source.updateMatrixWorld(true);
+      kit.source.traverse(object => {
+        if (!(object instanceof THREE.Mesh) || object instanceof THREE.InstancedMesh) return;
+        bounds.setFromObject(object);
+        const size = bounds.getSize(new THREE.Vector3());
+        if (size.y < .45 || bounds.max.y < .5 || bounds.min.y > 30 || bounds.min.x > 130 || bounds.max.x < -130 || bounds.min.z > 170 || bounds.max.z < -110) return;
+        solids.push({ minX: bounds.min.x, maxX: bounds.max.x, minZ: bounds.min.z, maxZ: bounds.max.z, minY: bounds.min.y, maxY: bounds.max.y });
+      });
+      for (const object of kit.details.children) if (object instanceof THREE.InstancedMesh && (object.name === 'city-broadleaf-trees' || object.name === 'city-conifers')) {
+        const trees = object as THREE.InstancedMesh, matrix = new THREE.Matrix4(), point = new THREE.Vector3();
+        for (let i = 0; i < trees.count; i++) { trees.getMatrixAt(i, matrix); point.setFromMatrixPosition(matrix); solids.push({ minX: point.x - .23, maxX: point.x + .23, minZ: point.z - .23, maxZ: point.z + .23, minY: 0, maxY: 3 }); }
+      }
+      return solids;
+  }
+  // People step round the same posts, planters and trees that the free-roam car collides with.
+  life.setObstacles(collectSolids());
 
   const pickBoxes = CITY_LOCATIONS.map(location => {
     const dimensions = FOOTPRINT[location.id].pick;
@@ -123,59 +196,57 @@ export async function buildCityWorld(scene: THREE.Scene, renderer: THREE.WebGLRe
     });
     geometries.forEach(item => item.dispose()); materials.forEach(item => item.dispose()); textures.forEach(item => item.dispose()); skeletons.forEach(item => item.dispose());
   }
+  let simulationTime = -1;
   return {
-    assetReady, pickBoxes, lifeCounts: { ...life.counts, stands: kit.stands },
-    /** Individual authored solids remain available behind the render batches. */
-    roamSolids() {
-      const solids: CitySolid[] = [], bounds = new THREE.Box3();
-      kit.source.updateMatrixWorld(true);
-      kit.source.traverse(object => {
-        if (!(object instanceof THREE.Mesh) || object instanceof THREE.InstancedMesh) return;
-        bounds.setFromObject(object);
-        const size = bounds.getSize(new THREE.Vector3());
-        if (size.y < .45 || bounds.max.y < .5 || bounds.min.y > 30 || bounds.min.x > 130 || bounds.max.x < -130 || bounds.min.z > 170 || bounds.max.z < -110) return;
-        solids.push({ minX: bounds.min.x, maxX: bounds.max.x, minZ: bounds.min.z, maxZ: bounds.max.z, minY: bounds.min.y, maxY: bounds.max.y });
-      });
-      for (const object of kit.details.children) if (object instanceof THREE.InstancedMesh && (object.name === 'city-broadleaf-trees' || object.name === 'city-conifers')) {
-        const trees = object as THREE.InstancedMesh, matrix = new THREE.Matrix4(), point = new THREE.Vector3();
-        for (let i = 0; i < trees.count; i++) { trees.getMatrixAt(i, matrix); point.setFromMatrixPosition(matrix); solids.push({ minX: point.x - .23, maxX: point.x + .23, minZ: point.z - .23, maxZ: point.z + .23, minY: 0, maxY: 3 }); }
-      }
-      return solids;
+    assetReady, pickBoxes, lifeCounts: { ...life.counts, ...traffic.counts, stands: kit.stands },
+    roamSolids: collectSolids,
+    bodies: () => [...traffic.bodies(), ...circuit.bodies(), ...life.bodies()],
+    reactContact(contact: CityContact) {
+      if (contact.kind === 'vehicle') { traffic.react(contact); circuit.react(contact); }
+      if (contact.kind === 'person') life.react(contact, Math.max(0, simulationTime));
     },
+    drainContacts: () => [...traffic.drainContacts(), ...circuit.drainContacts(), ...life.drainContacts()],
+    /** Playing surfaces people stand on and the free-roam car keeps off. */
+    roamFloors: venues.floors,
     highlight(id: CityLocationId | null) {
       const location = CITY_LOCATIONS.find(item => item.id === id); selection.visible = !!location;
       if (location) { selection.position.set(location.position[0], .16, location.position[2]); selection.scale.setScalar(FOOTPRINT[location.id].ring); (selection.material as THREE.MeshBasicMaterial).color.set(location.accent); }
     },
-    update(time: number, drive?: { x: number; z: number } | null) {
-      kit.setTime(time); life.update(time); landmarks.update(time); refinement.update(time); gameAssets?.update(time);
-      venues.cars.forEach((car, i) => { const angle = time * .14 + i * Math.PI * 2 / venues.cars.length; car.position.copy(venues.racingPath(angle)); car.rotation.y = Math.atan2(-Math.sin(angle) * venues.raceRadiusX, Math.cos(angle) * 13.5); });
-      // Traffic keeps to the left, and drives in from the wider city.
-      // Traffic keeps to the left and yields to the coupe: cars near it on its street pull out of view.
+    update(time: number, drive?: { x: number; z: number } | null, journey = false, playerBodies: readonly CityBody[] = []) {
+      const previous = simulationTime < 0 ? time : simulationTime;
+      const duration = Math.min(.1, Math.max(0, time - previous));
+      const steps = Math.max(1, Math.ceil(duration / (1 / 60)));
       let nearest = Infinity;
-      traffic.forEach((car, i) => {
-        const east = i % 2 === 0, street = i < 3 ? 3 : 48; car.position.set((((time * 4.3 + i * 47) % 300) - 150) * (east ? 1 : -1), .07, street + (east ? -1.6 : 1.6)); car.rotation.y = (east ? 1 : -1) * Math.PI / 2;
-        car.visible = !drive || Math.abs(drive.z - street) > 6 && Math.abs(drive.x - car.position.x) > 4 || Math.hypot(drive.x - car.position.x, drive.z - car.position.z) > 18;
-        if (drive && car.visible) nearest = Math.min(nearest, Math.hypot(drive.x - car.position.x, drive.z - car.position.z));
-      });
+      for (let i = 1; i <= steps; i++) {
+        const at = time - duration + duration * i / steps;
+        life.update(at, { cars: traffic.vehicles(), coupe: drive ?? null, bodies: journey ? [] : [...playerBodies, ...traffic.bodies(), ...circuit.bodies()] });
+        nearest = traffic.update(at, life.onRoad(), drive ?? null, journey, playerBodies, journey ? [] : life.bodies());
+        circuit.update(duration / steps, at, journey ? [] : [...playerBodies, ...life.bodies()]);
+      }
+      simulationTime = time;
+      kit.setTime(time); landmarks.update(time); refinement.update(time); gameAssets?.update(time);
+      for (const { car, wheel, base, radius } of raceWheels) wheel.quaternion.setFromAxisAngle(AXLE, circuit.distance(car) / radius).multiply(base);
+      // Traffic keeps to the left, gives way to people on zebras and to the coupe, and never leaves view abruptly.
       return nearest;
     },
     /** The sky travels with the camera so the horizon never comes closer. */
-    follow(camera: THREE.Camera) { district.follow(camera); },
+    follow(camera: THREE.Camera) { district.follow(camera); lightLamps(camera); },
     /** Slower devices keep the scene but lose the extra venue lights. */
-    reduce() { reduced = true; refinement.reduce(); venues.lights.forEach(item => { item.light.intensity = 0; }); },
+    reduce() { reduced = true; refinement.reduce(); traffic.reduce(); venues.lights.forEach(item => { item.light.intensity = 0; }); },
     layoutIssues,
     /** Lights-on: zones are [streets, football, cricket, basketball, racing], each 0..1. */
     setPower(power: { zones: number[]; ripple: number; windows: number; neon: number; signs: number }) {
-      kit.setPower(power); district.roads.setNeon(power.neon);
+      kit.setPower(power); district.roads.setNeon(power.neon); streetPower = power.zones[0];
       refinement.setPower(power.neon);
       // Light membership never changes here (that would recompile every shader); only intensity does.
       venues.lights.forEach(item => { item.light.intensity = reduced ? 0 : item.base * power.zones[item.zone]; });
     },
     setEntrance(wake: number, plazaVisible: boolean) { gateway.setWake(wake); gateway.setPlazaVisible(plazaVisible); },
     dispose() {
-      disposed = true; landmarks.dispose(); gateway.dispose(); gameAssets?.dispose(); district.roads.dispose(); ktxLoader.dispose();
+      disposed = true; traffic.dispose(); life.dispose(); landmarks.dispose(); gateway.dispose(); gameAssets?.dispose(); district.roads.dispose(); ktxLoader.dispose();
       for (const root of [kit.source, kit.batch, kit.details, kit.moving, selection, ...assets]) { disposeObject(root); root.removeFromParent(); }
       for (const box of pickBoxes) disposeObject(box);
+      for (const { light } of lampPool) { light.removeFromParent(); light.dispose(); }
       kit.disposeShared();
     },
   };

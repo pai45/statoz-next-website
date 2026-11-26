@@ -25,7 +25,8 @@ export function CityRoamHud({ status, scene, showIntro, touchControls }: { statu
       <span className={r.waypointGlyph} aria-hidden="true"><svg className={r.waypointPin} viewBox="0 0 24 24"><path d="m12 3 8 9-8 9-8-9Z" /><circle cx="12" cy="12" r="2" /></svg><svg className={r.waypointArrow} viewBox="0 0 24 24"><path d="m8 5 7 7-7 7" /></svg></span>
       <span className={r.waypointCopy}><span>Visit {near.name}</span><small aria-hidden="true"><span className={r.waypointKeyboardHint}>Press <kbd>F</kbd></span><span className={r.waypointTapHint}>Tap to visit</span><i />{Math.round(Math.hypot((status?.x ?? 0) - near.position[0], (status?.z ?? 0) - near.position[2]))} m</small></span>
     </button>}
-    {!near && status?.blocked && <div className={r.context} role="status"><span>Path blocked. Turn or reverse.</span></div>}
+    {status?.contact && <div className={r.context} role="status" data-roam-contact><span>{status.contact}</span></div>}
+    {!status?.contact && !near && status?.blocked && <div className={r.context} role="status"><span>Path blocked. Turn or reverse.</span></div>}
     {touchControls && <div className={r.controls} data-roam-touch-controls>
       <div className={r.pad} role="group" aria-label={driving ? 'Touch driving controls' : 'Touch walking controls'}>
         <div />{pad('forward', driving ? 'Accelerate' : 'Walk forward', '↑')}<div />

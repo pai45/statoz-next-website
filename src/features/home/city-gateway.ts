@@ -19,7 +19,10 @@ const PLAZA = { minX: -47, maxX: 13, minZ: 176, maxZ: 214, top: 1.2 };
 export function buildGateway(kit: CityKit, facadeBox: (w: number, h: number, d: number, x: number, z: number) => THREE.Mesh, mobile: boolean) {
   const { box, material } = kit;
   const resources: { dispose(): void }[] = [];
-  const metal = new THREE.MeshPhysicalMaterial({ color: '#17202b', metalness: .88, roughness: .34, clearcoat: .35, clearcoatRoughness: .3, envMapIntensity: 1.4 });
+  // Gunmetal, not black: a metal's colour is its reflectance, and a near-black one reflects nothing of the city.
+  // Satin rather than mirror: facing the dark avenue, a pure metal only reflects darkness; a little diffuse
+  // lets the moon and the street lamps model the pylons.
+  const metal = new THREE.MeshPhysicalMaterial({ color: '#4f5e70', metalness: .6, roughness: .36, clearcoat: .5, clearcoatRoughness: .22, envMapIntensity: 1.5 });
   const seamMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(P.cyan).multiplyScalar(2.2), toneMapped: false });
   const underglow = new THREE.MeshBasicMaterial({ color: new THREE.Color('#dff7ff').multiplyScalar(1.6), toneMapped: false });
   resources.push(metal, seamMaterial, underglow);
@@ -75,6 +78,7 @@ export function buildGateway(kit: CityKit, facadeBox: (w: number, h: number, d: 
       box(.12, 7.2, .12, x, 3.6, z, material('#2b3646', 0, .4)); box(.5, .1, 1.6, x - side * .3, 7.2, z, material('#2b3646', 0, .4));
       box(.36, .05, 1.3, x - side * .3, 7.14, z, material('#f2f8ff', 2.2));
       kit.pool(x - side * 1.6, z, 5.4, '#e7f3ff', .34); kit.reflection(x - side * 1.4, z, '#e7f3ff', .55, 9);
+      kit.lampSpot(x - side * .3, 5.9, z, '#e7f3ff');
     }
   }
   // Set-back towers frame the avenue without crowding it.
@@ -165,5 +169,24 @@ export function cityEnvironment(renderer: THREE.WebGLRenderer) {
   const generator = new THREE.PMREMGenerator(renderer);
   const target = generator.fromScene(scene, .12, .1, 100);
   generator.dispose(); resources.forEach(mesh => { mesh.geometry.dispose(); (mesh.material as THREE.Material).dispose(); });
+  return target;
+}
+
+/**
+ * Reflections of the finished, fully lit city: a cube snapshot from above the grounds, filtered to the
+ * same 256 size as `cityEnvironment`, so materials keep their compiled programs when the scene switches
+ * to it. The snapshot renders into linear HDR targets, which use the same programs as the composer's
+ * target; without a composer the city's programs were compiled for the screen, so don't call it there.
+ */
+export function captureCityEnvironment(renderer: THREE.WebGLRenderer, scene: THREE.Scene, position: THREE.Vector3) {
+  const cube = new THREE.WebGLCubeRenderTarget(256, { type: THREE.HalfFloatType });
+  const camera = new THREE.CubeCamera(.5, 2400, cube); camera.position.copy(position);
+  // This can run before the first city frame, so the faces must create and draw the sun's shadow map themselves.
+  const previous = renderer.getRenderTarget();
+  try { camera.update(renderer, scene); }
+  finally { renderer.setRenderTarget(previous); }
+  const generator = new THREE.PMREMGenerator(renderer);
+  const target = generator.fromCubemap(cube.texture);
+  generator.dispose(); cube.dispose();
   return target;
 }

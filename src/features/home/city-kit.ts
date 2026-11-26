@@ -39,8 +39,18 @@ export function createCityKit(scene: THREE.Scene) {
   const claims: { label: string; minX: number; minZ: number; maxX: number; maxZ: number }[] = [];
   function claim(label: string, minX: number, minZ: number, maxX: number, maxZ: number) { claims.push({ label, minX, minZ, maxX, maxZ }); }
   function setZone(name: keyof typeof ZONES) { zone = ZONES[name]; }
+  // A floodlight head is a bank of separate lamps in a dark housing, not one glowing slab.
+  let lampBank: THREE.Texture | null = null;
   function floodLamp() {
-    if (!floodLamps[zone]) floodLamps[zone] = new THREE.MeshStandardMaterial({ color: '#eef8ff', roughness: .65, metalness: .12, emissive: '#eef8ff', emissiveIntensity: 2.4 });
+    lampBank ??= canvasTexture(256, 128, (c, w, h) => {
+      c.fillStyle = '#000'; c.fillRect(0, 0, w, h);
+      for (let row = 0; row < 3; row++) for (let column = 0; column < 6; column++) {
+        const x = (column + .5) * w / 6, y = (row + .5) * h / 3, glow = c.createRadialGradient(x, y, 0, x, y, 17);
+        glow.addColorStop(0, '#ffffff'); glow.addColorStop(.55, '#f4fbff'); glow.addColorStop(.8, 'rgba(200,225,255,.35)'); glow.addColorStop(1, 'rgba(0,0,0,0)');
+        c.fillStyle = glow; c.fillRect(x - 18, y - 18, 36, 36);
+      }
+    });
+    if (!floodLamps[zone]) floodLamps[zone] = new THREE.MeshStandardMaterial({ color: '#1c2531', roughness: .5, metalness: .3, emissive: '#eef8ff', emissiveMap: lampBank, emissiveIntensity: 2.4 });
     return floodLamps[zone];
   }
   /** Emissive light that switches on with the window wave: rooms nearer the entrance light first. */
@@ -181,6 +191,9 @@ export function createCityKit(scene: THREE.Scene) {
   function pool(x: number, z: number, radius: number, color: string, strength = 1, y = .14) { poolItems.push({ x, y, z, radius, color: new THREE.Color(color).multiplyScalar(strength), zone }); }
   const beamItems: { from: THREE.Vector3; to: THREE.Vector3; spread: number; color: THREE.Color; zone: number }[] = [];
   function beam(from: THREE.Vector3, to: THREE.Vector3, spread: number, color: string, strength = 1) { beamItems.push({ from: from.clone(), to: to.clone(), spread, color: new THREE.Color(color).multiplyScalar(strength), zone }); }
+  /** Where a lamp sheds real light. The world lends a few moving lights to the lamps nearest the view. */
+  const lampSpots: { position: THREE.Vector3; color: THREE.Color }[] = [];
+  function lampSpot(x: number, y: number, z: number, color: string) { lampSpots.push({ position: new THREE.Vector3(x, y, z), color: new THREE.Color(color) }); }
   // Wet asphalt: each street light leaves a long streak that stretches away from the viewer.
   const reflectionItems: { x: number; z: number; color: THREE.Color; length: number; zone: number }[] = [];
   function reflection(x: number, z: number, color: string, strength = 1, length = 9) { reflectionItems.push({ x, z, color: new THREE.Color(color).multiplyScalar(strength), length, zone }); }
@@ -373,7 +386,7 @@ export function createCityKit(scene: THREE.Scene) {
   }
 
   return {
-    source, batch, details, moving, seats, random, metal, dark, claims,
+    source, batch, details, moving, seats, random, metal, dark, claims, lampSpots, lampSpot,
     material, blend, group, box, cylinder, prism, dome, line, ring, canvasTexture, textTexture, fitText, panel, sign,
     windowQuad, facade, pool, beam, reflection, grandstand, floodlight, tree, finalize, rebatch, claim, setZone, zoned, rippled,
     get stands() { return stands; },
