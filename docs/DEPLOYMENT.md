@@ -24,6 +24,6 @@ $env:EXPECTED_COMMIT = '<published SHA>'
 npm.cmd run test:pages
 ```
 
-The suite checks secondary routes, canonical metadata, manifest icons, query-based chrome, legacy redirects, full 3D assets at desktop and mobile sizes, pause controls, city links, and browser/network errors. On CI it uses a 0.5 device scale factor and a three-minute per-test budget because the runner renders WebGL on the CPU; CSS viewports remain 1440 and 390 pixels wide. Failed browser runs upload screenshots and traces for diagnosis. Build output, dependency caches, and local test output are ignored by Git.
+The suite checks secondary routes, canonical metadata, manifest icons, query-based chrome, legacy redirects, full 3D assets at desktop and mobile sizes, pause controls, city links, and browser/network errors. On CI the runner renders WebGL on the CPU, so the suite uses a 0.5 device scale factor with the same 1440px and 390px CSS viewports. The desktop city test has six minutes. The other tests have three minutes each. Failed browser runs upload screenshots and traces for diagnosis. Build output, dependency caches, and local test output are ignored by Git.
 
 Analytics remains opt-in through `NEXT_PUBLIC_ENABLE_ANALYTICS=true`; this Pages workflow leaves it off.

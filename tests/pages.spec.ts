@@ -23,6 +23,8 @@ test('Pages serves every route, manifest, metadata and published identity', asyn
 });
 
 for (const width of [1440, 390]) test(`Pages loads the complete city with working assets at ${width}`, async ({ page, baseURL }) => {
+  // Software rendering can exhaust the desktop interaction budget on hosted runners.
+  if (process.env.CI && width === 1440) test.setTimeout(360000);
   await page.setViewportSize({ width, height: 950 });
   const errors: string[] = [], failed: string[] = [], escaped: string[] = [];
   const origin = new URL(baseURL!).origin, prefix = new URL(baseURL!).pathname;
